@@ -708,7 +708,10 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
         {/* Gallery Header with top-alignment and consistent spacing */}
         <div className="mb-16 flex flex-col lg:flex-row lg:items-start justify-between gap-8" id="portfolio-header">
           <div className="max-w-2xl">
-            <h2 className="font-podium text-2xl sm:text-3xl text-white tracking-widest mb-3 uppercase">
+            <h2 
+              className="font-podium text-2xl sm:text-3xl text-white tracking-widest mb-3 uppercase"
+              style={{ color: '#ffffff' }}
+            >
               02 CREATIONS
             </h2>
             <p className="font-podium text-3xl sm:text-4xl md:text-5xl text-zinc-100 uppercase tracking-wide leading-tight mt-4">
@@ -736,9 +739,14 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
                   onClick={() => setSelectedCategory(cat.id as any)}
                   className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
                     isActive
-                      ? 'bg-white text-zinc-950 shadow-lg scale-102 font-bold'
+                      ? 'bg-white text-zinc-950 shadow-lg scale-102'
                       : 'text-zinc-400 hover:text-white hover:bg-zinc-800/40'
                   }`}
+                  style={
+                    isActive
+                      ? { color: '#000000', backgroundColor: '#ffffff', opacity: 1 }
+                      : { color: 'rgba(255, 255, 255, 0.6)' }
+                  }
                 >
                   {cat.label[locale]}
                 </button>
@@ -754,8 +762,11 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
           {(selectedCategory === 'all' || selectedCategory === 'render3d') && render3dWorks.length > 0 && (
             <div className="space-y-8" id="portfolio-section-render3d">
               <div className="flex items-center gap-3 border-b border-white/5 pb-3">
-                <span className="w-1 h-3 bg-white rounded-full" />
-                <h3 className="font-podium text-sm tracking-wider uppercase text-zinc-300">
+                <span className="w-1 h-3 bg-white rounded-full" style={{ backgroundColor: '#ffffff' }} />
+                <h3 
+                  className="font-podium text-sm tracking-wider uppercase text-zinc-300"
+                  style={{ color: '#dee2e6' }}
+                >
                   {locale === 'zh' ? 'Ⅰ. 3D渲染作品展示' : 'Ⅰ. 3D CONCEPT RENDERS'}
                 </h3>
                 <span className="text-[10px] font-mono text-zinc-500">({render3dWorks.length})</span>
@@ -770,8 +781,11 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
           {(selectedCategory === 'all' || selectedCategory === 'illustration') && illustrationWorks.length > 0 && (
             <div className="space-y-8" id="portfolio-section-illustrations">
               <div className="flex items-center gap-3 border-b border-white/5 pb-3 pt-4">
-                <span className="w-1 h-3 bg-white rounded-full" />
-                <h3 className="font-podium text-sm tracking-wider uppercase text-zinc-300">
+                <span className="w-1 h-3 bg-white rounded-full" style={{ backgroundColor: '#ffffff' }} />
+                <h3 
+                  className="font-podium text-sm tracking-wider uppercase text-zinc-300"
+                  style={{ color: '#dee2e6' }}
+                >
                   {locale === 'zh' ? 'Ⅱ. 创意插画展示' : 'Ⅱ. CONCEPT ILLUSTRATIONS'}
                 </h3>
                 <span className="text-[10px] font-mono text-zinc-500">({illustrationWorks.length})</span>
@@ -786,8 +800,11 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
           {(selectedCategory === 'all' || selectedCategory === 'detail') && detailWorks.length > 0 && (
             <div className="space-y-8" id="portfolio-section-details">
               <div className="flex items-center gap-3 border-b border-white/5 pb-3 pt-4">
-                <span className="w-1 h-3 bg-white rounded-full" />
-                <h3 className="font-podium text-sm tracking-wider uppercase text-zinc-300">
+                <span className="w-1 h-3 bg-white rounded-full" style={{ backgroundColor: '#ffffff' }} />
+                <h3 
+                  className="font-podium text-sm tracking-wider uppercase text-zinc-300"
+                  style={{ color: '#dee2e6' }}
+                >
                   {locale === 'zh' ? 'Ⅲ. 详情页商业作品' : 'Ⅲ. COMMERCIAL DETAIL PAGES'}
                 </h3>
                 <span className="text-[10px] font-mono text-zinc-500">({detailWorks.length})</span>
@@ -806,8 +823,11 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
             return (
               <div className="space-y-12" id="portfolio-section-newmedia">
                 <div className="flex items-center gap-3 border-b border-white/5 pb-3 pt-4">
-                  <span className="w-1 h-3 bg-white rounded-full" />
-                  <h3 className="font-podium text-sm tracking-wider uppercase text-zinc-300">
+                  <span className="w-1 h-3 bg-white rounded-full" style={{ backgroundColor: '#ffffff' }} />
+                  <h3 
+                    className="font-podium text-sm tracking-wider uppercase text-zinc-300"
+                    style={{ color: '#dee2e6' }}
+                  >
                     {locale === 'zh' ? 'Ⅳ. 新媒体创意设计' : 'Ⅳ. NEW MEDIA CREATIONS'}
                   </h3>
                   <span className="text-[10px] font-mono text-zinc-500">({newmediaWorks.length})</span>
@@ -818,7 +838,10 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
                   <div className="space-y-4">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 bg-pink-500 rounded-full animate-pulse" />
-                      <h4 className="text-xs font-semibold text-zinc-400 uppercase tracking-widest">
+                      <h4 
+                        className="text-xs font-semibold text-zinc-400 uppercase tracking-widest"
+                        style={{ color: '#adb5bd' }}
+                      >
                         {locale === 'zh' ? '品牌大图与运营 Banner' : 'Brand Key Visuals & Widescreen Banners'}
                       </h4>
                     </div>
@@ -833,7 +856,10 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
                   <div className="space-y-4 pt-4">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 bg-pink-500 rounded-full animate-pulse" />
-                      <h4 className="text-xs font-semibold text-zinc-400 uppercase tracking-widest">
+                      <h4 
+                        className="text-xs font-semibold text-zinc-400 uppercase tracking-widest"
+                        style={{ color: '#adb5bd' }}
+                      >
                         {locale === 'zh' ? '社媒推广海报与商业贴片' : 'Social Media Posters & E-commerce Tiles'}
                       </h4>
                     </div>

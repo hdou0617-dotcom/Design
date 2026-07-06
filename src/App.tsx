@@ -124,6 +124,7 @@ export default function App() {
   // 4. Save locale/theme changes
   React.useEffect(() => {
     localStorage.setItem('dou_portfolio_locale', locale);
+    document.documentElement.lang = locale;
   }, [locale]);
 
   React.useEffect(() => {

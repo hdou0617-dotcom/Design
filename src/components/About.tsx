@@ -65,8 +65,11 @@ export const About: React.FC<AboutProps> = ({ profile, locale }) => {
         {/* Section Title */}
         <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-start justify-between gap-8" id="about-header">
           <div className="max-w-2xl">
-            <h2 className="font-podium text-2xl sm:text-3xl text-white tracking-widest mb-3 uppercase">
-              01 // STUDIO
+            <h2 
+              className="font-podium text-2xl sm:text-3xl text-white tracking-widest mb-3 uppercase"
+              style={{ color: '#ffffff' }}
+            >
+              {locale === 'zh' ? '01 // 关于我' : '01 // STUDIO'}
             </h2>
             <p className="font-podium text-3xl sm:text-4xl md:text-5xl text-zinc-100 uppercase tracking-wide leading-tight mt-4">
               {locale === 'zh' ? (

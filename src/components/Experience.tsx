@@ -24,8 +24,11 @@ export const Experience: React.FC<ExperienceProps> = ({ experiences, locale, dar
         {/* Section Header with top-alignment and no offset on right side description */}
         <div className="mb-16 md:mb-20 flex flex-col md:flex-row md:items-start justify-between gap-8" id="experience-header">
           <div className="max-w-2xl">
-            <h2 className="font-podium text-2xl sm:text-3xl text-white tracking-widest mb-3 uppercase">
-              03 CHRONOLOGY
+            <h2 
+              className="font-podium text-2xl sm:text-3xl text-white tracking-widest mb-3 uppercase"
+              style={{ color: '#ffffff' }}
+            >
+              {locale === 'zh' ? '03 // 个人履历' : '03 // CHRONOLOGY'}
             </h2>
             <p className="font-podium text-3xl sm:text-4xl md:text-5xl text-zinc-100 uppercase tracking-wide leading-tight mt-4">
               {locale === 'zh' ? (

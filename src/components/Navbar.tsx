@@ -74,12 +74,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   key={item.id}
                   onClick={() => handleScrollTo(item.id)}
-                  className={`font-inter text-sm tracking-widest uppercase transition-colors duration-300 hover:text-white cursor-pointer whitespace-nowrap ${
-                    isSectionActive ? 'text-white font-semibold' : 'text-white/70'
+                  className={`relative font-inter text-xs tracking-widest uppercase transition-all duration-300 hover:text-white cursor-pointer whitespace-nowrap pb-1.5 ${
+                    isSectionActive ? 'text-white font-bold' : 'text-white/45 font-normal'
                   }`}
                   id={`nav-link-${item.id}`}
                 >
                   {item.label[locale]}
+                  {isSectionActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.9)] animate-pulse" />
+                  )}
                 </button>
               );
             })}
@@ -153,22 +156,27 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Centered Vertically Nav Links */}
         <div className="flex flex-col items-center justify-center space-y-8 px-6 text-center">
-          {navItems.map((item, i) => (
-            <button
-              key={item.id}
-              onClick={() => handleScrollTo(item.id)}
-              className="font-podium text-4xl sm:text-5xl text-white uppercase tracking-wider hover:text-white/70 transition-all duration-300 transform cursor-pointer"
-              style={{
-                transitionDelay: menuOpen ? `${i * 80 + 100}ms` : '0ms',
-                transform: menuOpen ? 'translateY(0)' : 'translateY(20px)',
-                opacity: menuOpen ? 1 : 0,
-                transitionProperty: 'transform, opacity',
-              }}
-              id={`vanguard-mobile-link-${item.id}`}
-            >
-              {item.label[locale]}
-            </button>
-          ))}
+          {navItems.map((item, i) => {
+            const isSectionActive = activeSection === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleScrollTo(item.id)}
+                className={`font-podium text-4xl sm:text-5xl uppercase tracking-wider transition-all duration-300 transform cursor-pointer ${
+                  isSectionActive ? 'text-white scale-105 font-bold' : 'text-white/40 hover:text-white/80'
+                }`}
+                style={{
+                  transitionDelay: menuOpen ? `${i * 80 + 100}ms` : '0ms',
+                  transform: menuOpen ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: menuOpen ? 1 : 0,
+                  transitionProperty: 'transform, opacity',
+                }}
+                id={`vanguard-mobile-link-${item.id}`}
+              >
+                {item.label[locale]}
+              </button>
+            );
+          })}
 
           {/* GET IN TOUCH Bordered Button with Staggered Animation */}
           <button

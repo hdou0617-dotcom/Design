@@ -4,8 +4,9 @@
  */
 
 import { DesignerProfile, PortfolioWork, SkillItem, ExperienceItem } from './types';
+import customData from './customData.json';
 
-export const initialProfile: DesignerProfile = {
+const defaultProfile: DesignerProfile = {
   name: {
     zh: "黄文荟",
     en: "WENHUI HUANG"
@@ -49,7 +50,7 @@ import { initialWorks } from './worksData';
 export { initialWorks };
 
 
-export const initialSkills: SkillItem[] = [
+const defaultSkills: SkillItem[] = [
   {
     name: "Photoshop 高级精修与排版",
     proficiency: 95,
@@ -97,7 +98,7 @@ export const initialSkills: SkillItem[] = [
   }
 ];
 
-export const initialExperiences: ExperienceItem[] = [
+const defaultExperiences: ExperienceItem[] = [
   {
     id: "exp-1",
     period: "2023.08 - 2024.08",
@@ -209,3 +210,7 @@ export const initialExperiences: ExperienceItem[] = [
     }
   }
 ];
+
+export const initialProfile: DesignerProfile = (customData && customData.profile) ? (customData.profile as any) : defaultProfile;
+export const initialSkills: SkillItem[] = (customData && customData.skills) ? (customData.skills as any) : defaultSkills;
+export const initialExperiences: ExperienceItem[] = (customData && customData.experiences) ? (customData.experiences as any) : defaultExperiences;

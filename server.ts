@@ -6,7 +6,6 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
-import { createServer as createViteServer } from "vite";
 import { initialProfile, initialSkills, initialExperiences } from "./src/data";
 import { initialWorks } from "./src/worksData";
 
@@ -121,6 +120,7 @@ async function startServer() {
 
   // Serve Frontend / Vite Middleware
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",

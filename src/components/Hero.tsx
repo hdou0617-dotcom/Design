@@ -54,11 +54,22 @@ export const Hero: React.FC<HeroProps> = ({ profile, locale }) => {
         {/* 2. Display Heading h1 */}
         <h1 
           className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.1] tracking-tight text-white mb-6 uppercase"
+          style={{ color: '#ffffff' }}
           id="hero-vanguard-title"
         >
-          Design.<br />
-          Disrupt.<br />
-          Craft.
+          {locale === 'zh' ? (
+            <>
+              设计.<br />
+              颠覆.<br />
+              匠心.
+            </>
+          ) : (
+            <>
+              Design.<br />
+              Disrupt.<br />
+              Craft.
+            </>
+          )}
         </h1>
 
         {/* 3. Subtext Paragraph */}

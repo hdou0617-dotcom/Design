@@ -98,8 +98,11 @@ export const Skills: React.FC<SkillsProps> = ({ locale }) => {
          {/* Section Header with top-alignment and consistent spacing */}
          <div className="mb-16 text-center md:text-left flex flex-col md:flex-row md:items-start justify-between gap-8" id="skills-header">
            <div className="max-w-xl text-center md:text-left">
-             <h2 className="font-podium text-2xl sm:text-3xl text-white tracking-widest mb-3 uppercase">
-               01 OFFERINGS
+             <h2 
+               className="font-podium text-2xl sm:text-3xl text-white tracking-widest mb-3 uppercase"
+               style={{ color: '#ffffff' }}
+             >
+               {locale === 'zh' ? '01 // 核心能力' : '01 // OFFERINGS'}
              </h2>
             <p className="font-podium text-3xl sm:text-4xl md:text-5xl text-zinc-100 uppercase tracking-wide leading-tight mt-4">
               {locale === 'zh' ? (
