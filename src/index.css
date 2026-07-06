@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-geist: "Geist", "Inter", "Plus Jakarta Sans", sans-serif;
+  --font-serif: "Playfair Display", "Didot", "Georgia", serif;
+  --font-mono: "JetBrains Mono", "SF Mono", monospace;
+  --font-podium: "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  /* Custom high-end "Elegant Dark" color palette overrides - solid, high-contrast shades for absolute legibility */
+  --color-zinc-50: #fbfbfd;      /* Crisp, bright high-end white */
+  --color-zinc-100: #f1f3f5;     /* Super clear white-gray */
+  --color-zinc-200: #e9ecef;     /* Clean light silver */
+  --color-zinc-300: #dee2e6;     /* Vibrant primary body text gray */
+  --color-zinc-400: #ced4da;     /* Highly readable secondary text gray */
+  --color-zinc-500: #adb5bd;     /* Clear tertiary gray */
+  --color-zinc-600: #6c757d;     /* Muted border or label gray */
+  --color-zinc-700: #495057;     /* Dark accent border gray */
+  --color-zinc-800: #343a40;     /* Strong border dark gray */
+  --color-zinc-850: #212529;     /* Deep card border/bg gray */
+  --color-zinc-900: #121416;     /* Super deep container black */
+  --color-zinc-950: #060708;     /* Ultimate rich carbon black */
+
+  /* Translucent border & glassmorphism variables for layouts that require soft overlay styles */
+  --color-glass-border-light: rgba(255, 255, 255, 0.15);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-border-dark: rgba(255, 255, 255, 0.05);
+  --color-glass-bg: rgba(255, 255, 255, 0.03);
+}
+
+/* Base custom modifications for premium feel */
+html {
+  scroll-behavior: smooth;
+  background-color: #060708;
+  color: #dee2e6;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #060708;
+  color: #dee2e6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Font utility classes */
+.font-podium {
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+  font-weight: 800;
+}
+
+.font-inter {
+  font-family: "Inter", sans-serif;
+}
+
+/* Animations defined in index.css under layer utilities */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s ease-out forwards;
+}
+.animate-fade-up-delay-1 {
+  animation: fade-up 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+.animate-fade-up-delay-3 {
+  animation: fade-up 0.8s ease-out 0.6s forwards;
+  opacity: 0;
+}
+.animate-fade-up-delay-4 {
+  animation: fade-up 0.8s ease-out 0.8s forwards;
+  opacity: 0;
+}
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+.animate-fade-in-delay {
+  animation: fade-in 1s ease-out 0.5s forwards;
+  opacity: 0;
+}
+.animate-scale-in {
+  animation: scale-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Selection highlight */
+::selection {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* Custom scrollbar for high-end look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #444444;
+}
+
+/* Organic noise overlay */
+.noise-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 15;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
