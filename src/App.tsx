@@ -318,43 +318,32 @@ export default function App() {
       </main>
 
       {/* FOOTER */}
-      <footer className="py-12 md:py-16 bg-zinc-950 transition-colors duration-300 border-t border-white/5 text-[10px] uppercase tracking-[0.2em] text-zinc-500">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <footer className="py-12 md:py-16 bg-zinc-950 transition-colors duration-300 border-t border-white/5 text-[10px] uppercase tracking-[0.2em] text-zinc-500" id="vanguard-footer">
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 flex flex-col md:flex-row items-center justify-between gap-8">
           
           {/* Left copyright and credits */}
-          <div className="space-y-2 text-center md:text-left">
+          <div className="space-y-2 text-center md:text-left flex-shrink-0">
             <p className="font-semibold tracking-widest text-zinc-400 uppercase">
               © {new Date().getFullYear()} {profile.name[locale]} // ALL RIGHTS RESERVED
             </p>
-            <p className="font-mono text-[9px] tracking-[0.25em] text-zinc-500 uppercase flex items-center justify-center md:justify-start gap-1">
+            <p className="font-mono text-[9px] tracking-[0.25em] text-zinc-500 uppercase flex items-center justify-center md:justify-start gap-1.5">
               <span>DESIGNED BY</span>
               <Heart className="w-3 h-3 text-white fill-current animate-pulse" />
               <span>IN ELEGANT PORTFOLIO STYLE</span>
             </p>
           </div>
 
-          {/* Core metadata badges */}
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            <span className="px-3 py-1 rounded-full border border-zinc-850 bg-zinc-900/30 text-zinc-400 font-mono text-[9px] tracking-widest">
+          {/* Right metadata badges */}
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 flex-shrink-0">
+            <span className="px-4 py-1.5 rounded-full border border-zinc-850 bg-zinc-900/30 text-zinc-400 font-mono text-[9px] tracking-widest select-none">
               AIGC COMPILATION V1.8
             </span>
-            <span className="px-3 py-1 rounded-full border border-zinc-850 bg-zinc-900/30 text-zinc-400 font-mono text-[9px] tracking-widest flex items-center gap-1">
-              <Globe className="w-3 h-3 text-white" />
-              <span>{locale === 'zh' ? '中文 / EN' : 'ZH / EN'}</span>
-            </span>
-          </div>
-
-          {/* Right quick actions */}
-          <div className="flex items-center space-x-4">
-            {/* Quick config settings */}
             <button
-              onClick={() => setEditorOpen(true)}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full cursor-pointer border border-zinc-800 bg-zinc-900/40 text-zinc-400 hover:bg-zinc-900 hover:text-white transition-all font-mono uppercase tracking-widest text-[9px]"
-              title="Configure Resume Data"
-              id="footer-btn-editor"
+              onClick={() => setLocale(locale === 'zh' ? 'en' : 'zh')}
+              className="px-4 py-1.5 rounded-full border border-zinc-850 bg-zinc-900/30 hover:bg-white hover:text-zinc-950 hover:border-white text-zinc-400 font-mono text-[9px] tracking-widest flex items-center gap-1.5 transition-all duration-300 cursor-pointer"
             >
-              <Settings className="w-3 h-3 animate-spin" style={{ animationDuration: '10s' }} />
-              <span>{locale === 'zh' ? '管理配置' : 'Admin Panel'}</span>
+              <Globe className="w-3 h-3" />
+              <span>{locale === 'zh' ? '中文 / EN' : 'ZH / EN'}</span>
             </button>
           </div>
 

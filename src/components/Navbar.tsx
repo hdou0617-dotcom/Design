@@ -60,21 +60,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Left: Brand name PORTFOLIO */}
           <button
             onClick={() => handleScrollTo('hero')}
-            className="font-podium text-white font-bold uppercase text-2xl sm:text-3xl tracking-wider hover:opacity-85 transition-opacity cursor-pointer"
+            className="font-podium text-white font-bold uppercase text-2xl sm:text-3xl tracking-wider hover:opacity-85 transition-opacity cursor-pointer whitespace-nowrap flex-shrink-0"
             id="vanguard-brand-logo"
           >
             PORTFOLIO
           </button>
 
           {/* Center: Hidden below md, 4 nav links */}
-          <div className="hidden md:flex items-center space-x-8 lg:space-x-12" id="vanguard-desktop-nav">
+          <div className="hidden md:flex items-center gap-8 lg:gap-12 flex-shrink-0" id="vanguard-desktop-nav">
             {navItems.map((item) => {
               const isSectionActive = activeSection === item.id;
               return (
                 <button
                   key={item.id}
                   onClick={() => handleScrollTo(item.id)}
-                  className={`font-inter text-sm tracking-widest uppercase transition-colors duration-300 hover:text-white cursor-pointer ${
+                  className={`font-inter text-sm tracking-widest uppercase transition-colors duration-300 hover:text-white cursor-pointer whitespace-nowrap ${
                     isSectionActive ? 'text-white font-semibold' : 'text-white/70'
                   }`}
                   id={`nav-link-${item.id}`}
@@ -86,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Right: Actions and GET IN TOUCH */}
-          <div className="flex items-center space-x-3 sm:space-x-4" id="vanguard-navbar-actions">
+          <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0" id="vanguard-navbar-actions">
             
             {/* Elegant language picker */}
             <button
@@ -99,24 +99,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="hidden sm:inline">{locale === 'zh' ? 'EN' : 'ZH'}</span>
             </button>
 
-            {/* Quiet layout editor triggers */}
-            <button
-              onClick={onOpenEditor}
-              className="p-2 rounded-full border border-white/10 cursor-pointer hover:bg-white/10 text-white/70 hover:text-white transition-colors"
-              title="Configure data"
-              id="vanguard-btn-config"
-            >
-              <Settings2 className="w-3.5 h-3.5" />
-            </button>
+
 
             {/* "GET IN TOUCH" Button (hidden below md) */}
             <button
               onClick={() => handleScrollTo('contact')}
-              className="hidden md:flex items-center gap-2 relative overflow-hidden px-5 py-2.5 rounded-full border border-white bg-white hover:bg-transparent text-zinc-950 hover:text-white font-medium text-xs tracking-widest uppercase transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] group"
+              className="hidden md:flex items-center justify-center relative overflow-hidden px-5 py-2.5 rounded-full border border-white bg-white hover:bg-transparent font-medium text-xs tracking-widest uppercase transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] group"
               id="vanguard-btn-get-touch"
             >
-              <span className="relative z-10 flex items-center gap-1.5">
-                <span>{locale === 'zh' ? '联系我' : 'GET IN TOUCH'}</span>
+              <span className="relative z-10 flex items-center gap-1.5 text-zinc-950 group-hover:text-white transition-colors duration-300">
+                <span className="font-semibold">{locale === 'zh' ? '联系我' : 'GET IN TOUCH'}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
             </button>
@@ -181,7 +173,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* GET IN TOUCH Bordered Button with Staggered Animation */}
           <button
             onClick={() => handleScrollTo('contact')}
-            className="flex items-center gap-2 rounded-full border border-white bg-white hover:bg-transparent text-zinc-950 hover:text-white px-8 py-3 text-xs font-semibold tracking-widest uppercase transition-all duration-300 transform mt-4 cursor-pointer group"
+            className="flex items-center justify-center gap-2 rounded-full border border-white bg-white hover:bg-transparent px-8 py-3 text-xs font-semibold tracking-widest uppercase transition-all duration-300 transform mt-4 cursor-pointer group"
             style={{
               transitionDelay: menuOpen ? `${navItems.length * 80 + 100}ms` : '0ms',
               transform: menuOpen ? 'translateY(0)' : 'translateY(20px)',
@@ -190,17 +182,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             }}
             id="vanguard-mobile-get-touch"
           >
-            <span>{locale === 'zh' ? '联系我' : 'GET IN TOUCH'}</span>
-            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span className="flex items-center gap-1.5 text-zinc-950 group-hover:text-white transition-colors duration-300">
+              <span>{locale === 'zh' ? '联系我' : 'GET IN TOUCH'}</span>
+              <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
           </button>
         </div>
 
         {/* Footer info in overlay */}
-        <div className="px-6 py-8 text-center border-t border-white/5 flex flex-col items-center space-y-4">
+        <div className="px-6 py-8 text-center border-t border-white/5 flex flex-col items-center gap-4">
           <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">
             © {new Date().getFullYear()} PORTFOLIO DESIGN COLLECTIVE
           </p>
-          <div className="flex space-x-4">
+          <div className="flex gap-4">
             <button
               onClick={() => {
                 setLocale(locale === 'zh' ? 'en' : 'zh');
@@ -209,16 +203,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="text-xs font-mono uppercase tracking-widest text-white/60 hover:text-white"
             >
               {locale === 'zh' ? 'ENGLISH (EN)' : '中文 (ZH)'}
-            </button>
-            <span className="text-white/20">|</span>
-            <button
-              onClick={() => {
-                onOpenEditor();
-                setMenuOpen(false);
-              }}
-              className="text-xs font-mono uppercase tracking-widest text-white/60 hover:text-white"
-            >
-              {locale === 'zh' ? '控制台' : 'CONSOLE'}
             </button>
           </div>
         </div>

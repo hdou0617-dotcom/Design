@@ -77,11 +77,13 @@ export const Hero: React.FC<HeroProps> = ({ profile, locale }) => {
         <div className="flex flex-col sm:flex-row sm:items-center gap-8 sm:gap-12">
           <button
             onClick={handleScrollToNext}
-            className="rounded-lg bg-white px-6 py-3 text-sm font-medium text-black hover:scale-105 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer shadow-lg shadow-white/5 hover:bg-zinc-100 self-start"
+            className="rounded-lg bg-white px-6 py-3 text-sm font-medium hover:scale-105 transition-all duration-300 inline-flex items-center justify-center cursor-pointer shadow-lg shadow-white/5 hover:bg-zinc-100 self-start animate-fade-in-delay"
             id="hero-cta-btn"
           >
-            <span>{locale === 'zh' ? '探索作品' : 'Explore Work'}</span>
-            <ArrowRight className="w-4 h-4" />
+            <span className="flex items-center gap-2 text-zinc-950 font-semibold">
+              <span>{locale === 'zh' ? '探索作品' : 'Explore Work'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </span>
           </button>
 
           {/* Vertical divider on desktop */}
