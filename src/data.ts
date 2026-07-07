@@ -46,8 +46,8 @@ const defaultProfile: DesignerProfile = {
   resumeDownloadUrl: "#"
 };
 
-import { initialWorks } from './worksData';
-export { initialWorks };
+import { initialWorks as defaultWorks } from './worksData';
+export const initialWorks: PortfolioWork[] = (customData && (customData as any).works) ? ((customData as any).works as PortfolioWork[]) : defaultWorks;
 
 
 const defaultSkills: SkillItem[] = [

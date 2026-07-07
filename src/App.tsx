@@ -34,6 +34,21 @@ const migrateWorksToPoster = (parsed: PortfolioWork[]): PortfolioWork[] => {
 };
 
 export default function App() {
+  // Clear cached local storage on new builds to ensure Netlify visitors see the updated content immediately
+  const CURRENT_VERSION = "v1.2.0";
+  try {
+    const savedVersion = localStorage.getItem('dou_portfolio_app_version');
+    if (savedVersion !== CURRENT_VERSION) {
+      localStorage.removeItem('dou_portfolio_profile');
+      localStorage.removeItem('dou_portfolio_works');
+      localStorage.removeItem('dou_portfolio_skills');
+      localStorage.removeItem('dou_portfolio_experiences');
+      localStorage.setItem('dou_portfolio_app_version', CURRENT_VERSION);
+    }
+  } catch (e) {
+    console.warn("Could not check app version:", e);
+  }
+
   // 1. Language & Theme States (Always deep elegant dark mode as standard)
   const [locale, setLocale] = React.useState<Locale>(() => {
     const saved = localStorage.getItem('dou_portfolio_locale');
