@@ -39,6 +39,7 @@ interface PortfolioImageProps {
   work: PortfolioWork;
   locale: Locale;
   className?: string;
+  isThumbnail?: boolean;
 }
 
 const LOCAL_IMAGE_FALLBACKS: Record<string, string> = {
@@ -90,17 +91,25 @@ const LOCAL_IMAGE_FALLBACKS: Record<string, string> = {
   "/Details Page/网站2.jpg": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000"
 };
 
-const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className = "w-full h-full object-cover" }) => {
+const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className = "w-full h-full object-cover", isThumbnail = false }) => {
   const [hasError, setHasError] = React.useState(false);
   const [loaded, setLoaded] = React.useState(false);
-  const [currentSrc, setCurrentSrc] = React.useState(work.imageUrl);
+
+  const getImageUrl = (url: string, thumb: boolean) => {
+    if (thumb && url && url.startsWith('/3D Rendering/')) {
+      return url.replace('/3D Rendering/', '/temp_small/');
+    }
+    return url;
+  };
+
+  const [currentSrc, setCurrentSrc] = React.useState(() => getImageUrl(work.imageUrl, isThumbnail));
 
   // Reset states when imageUrl changes, so new URLs can load correctly
   React.useEffect(() => {
     setHasError(false);
     setLoaded(false);
-    setCurrentSrc(work.imageUrl);
-  }, [work.imageUrl]);
+    setCurrentSrc(getImageUrl(work.imageUrl, isThumbnail));
+  }, [work.imageUrl, isThumbnail]);
 
   // Render a beautiful, highly stylized native vector mockup for the design work
   const renderMockup = () => {
@@ -434,6 +443,17 @@ interface PortfolioProps {
 
 export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWork }) => {
   const [selectedCategory, setSelectedCategory] = React.useState<WorkCategory>('all');
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile, { passive: true });
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const [previewWork, setPreviewWork] = React.useState<PortfolioWork | null>(null);
   const [copiedId, setCopiedId] = React.useState<string | null>(null);
   const [likedWorks, setLikedWorks] = React.useState<string[]>(() => {
@@ -637,36 +657,48 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
       >
         {/* Image Container with high quality scales and TiltedCard effect */}
         <div 
-          className="relative overflow-hidden w-full bg-zinc-950"
+          className="relative overflow-hidden w-full bg-zinc-950 flex-shrink-0"
           style={{ aspectRatio: ratioStr }}
         >
-          <TiltedCard
-            imageSrc={work.imageUrl}
-            altText={work.title[locale]}
-            captionText=""
-            containerHeight="100%"
-            containerWidth="100%"
-            imageHeight="100%"
-            imageWidth="100%"
-            scaleOnHover={1.03}
-            rotateAmplitude={10}
-            showMobileWarning={false}
-            showTooltip={false}
-            displayOverlayContent={true}
-            overlayContent={
-              <div className="absolute inset-0 bg-zinc-950/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full backdrop-blur-md bg-white/10 border border-white/20 text-white shadow-lg">
-                  <Maximize2 className="w-4 h-4" />
-                </div>
-              </div>
-            }
-          >
-            <PortfolioImage
-              work={work}
-              locale={locale}
-              className="w-full h-full object-cover"
-            />
-          </TiltedCard>
+          <div className="absolute inset-0 w-full h-full">
+            {isMobile ? (
+              <PortfolioImage
+                work={work}
+                locale={locale}
+                className="w-full h-full object-cover"
+                isThumbnail={true}
+              />
+            ) : (
+              <TiltedCard
+                imageSrc={work.imageUrl}
+                altText={work.title[locale]}
+                captionText=""
+                containerHeight="100%"
+                containerWidth="100%"
+                imageHeight="100%"
+                imageWidth="100%"
+                scaleOnHover={1.03}
+                rotateAmplitude={10}
+                showMobileWarning={false}
+                showTooltip={false}
+                displayOverlayContent={true}
+                overlayContent={
+                  <div className="absolute inset-0 bg-zinc-950/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full backdrop-blur-md bg-white/10 border border-white/20 text-white shadow-lg">
+                      <Maximize2 className="w-4 h-4" />
+                    </div>
+                  </div>
+                }
+              >
+                <PortfolioImage
+                  work={work}
+                  locale={locale}
+                  className="w-full h-full object-cover"
+                  isThumbnail={true}
+                />
+              </TiltedCard>
+            )}
+          </div>
         </div>
 
         {/* Info panel */}
