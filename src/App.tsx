@@ -34,8 +34,8 @@ const migrateWorksToPoster = (parsed: PortfolioWork[]): PortfolioWork[] => {
 };
 
 export default function App() {
-  // Clear cached local storage on new builds to ensure Netlify visitors see the updated content immediately
-  const CURRENT_VERSION = "v1.2.0";
+  // Clear cached local storage on new builds to ensure Netlify/Cloudflare visitors see the updated content immediately
+  const CURRENT_VERSION = "v1.2.1";
   try {
     const savedVersion = localStorage.getItem('dou_portfolio_app_version');
     if (savedVersion !== CURRENT_VERSION) {
