@@ -129,7 +129,7 @@ export const Contact: React.FC<ContactProps> = ({ profile, locale, darkMode }) =
                 showWechatQr ? 'max-h-[240px] opacity-100 p-4 mt-4' : 'max-h-0 opacity-0 pointer-events-none'
               }`}>
                 <img
-                  src={profile.wechatQrCode}
+                  src={profile.wechatQrCode && profile.wechatQrCode.startsWith('data:') ? profile.wechatQrCode : encodeURI(profile.wechatQrCode || '')}
                   alt="WeChat QR Code"
                   referrerPolicy="no-referrer"
                   className="w-32 h-32 object-cover rounded-lg border border-zinc-900"

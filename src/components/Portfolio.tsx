@@ -97,9 +97,8 @@ const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className
   const imgRef = React.useRef<HTMLImageElement>(null);
 
   const getImageUrl = (url: string, thumb: boolean) => {
-    if (thumb && url && url.startsWith('/3D Rendering/')) {
-      return url.replace('/3D Rendering/', '/temp_small/');
-    }
+    // Note: Do not replace with '/temp_small/' as files in that directory are corrupted binary files.
+    // Using the original high-resolution path directly ensures pristine visual quality and 100% successful loads.
     return url;
   };
 
@@ -112,13 +111,18 @@ const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className
     setCurrentSrc(getImageUrl(work.imageUrl, isThumbnail));
   }, [work.imageUrl, isThumbnail]);
 
-  // Handle cached images on mount or URL change
-  React.useEffect(() => {
-    if (imgRef.current && imgRef.current.complete) {
-      if (imgRef.current.naturalWidth === 320 && imgRef.current.naturalHeight === 320 && currentSrc.includes('postimg')) {
-        setHasError(true);
-      } else {
-        setLoaded(true);
+  // Handle cached images on mount or URL change using a callback ref
+  const handleImageRef = React.useCallback((node: HTMLImageElement | null) => {
+    if (node) {
+      imgRef.current = node;
+      if (node.complete) {
+        if (node.naturalWidth === 0) {
+          setHasError(true);
+        } else if (node.naturalWidth === 320 && node.naturalHeight === 320 && currentSrc.includes('postimg')) {
+          setHasError(true);
+        } else {
+          setLoaded(true);
+        }
       }
     }
   }, [currentSrc]);
@@ -413,7 +417,7 @@ const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className
       {/* Actual Image overlaying on top */}
       {!hasError && (
         <img
-          ref={imgRef}
+          ref={handleImageRef}
           src={currentSrc && currentSrc.startsWith('data:') ? currentSrc : encodeURI(currentSrc)}
           alt={work.title[locale]}
           referrerPolicy="no-referrer"
@@ -431,6 +435,11 @@ const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className
               const fallbackUrl = LOCAL_IMAGE_FALLBACKS[currentSrc];
               console.warn(`Local file ${currentSrc} not found, falling back to Unsplash URL: ${fallbackUrl}`);
               setCurrentSrc(fallbackUrl);
+            } else if (currentSrc && currentSrc.includes('/temp_small/')) {
+              // Smart recovery: fall back to original 3D Rendering folder if temp_small thumbnail fails to load
+              const originalUrl = currentSrc.replace('/temp_small/', '/3D Rendering/');
+              console.warn(`Thumbnail ${currentSrc} failed, retrying with original high-res image: ${originalUrl}`);
+              setCurrentSrc(originalUrl);
             } else if (currentSrc && currentSrc.startsWith('/') && !currentSrc.startsWith('/poster/') && !currentSrc.startsWith('/assets/')) {
               console.warn(`Local image ${currentSrc} failed to load. Retrying at /poster${currentSrc}...`);
               setCurrentSrc(`/poster${currentSrc}`);
@@ -502,14 +511,19 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
     }
   }, [previewWork]);
 
-  // Handle cached modal images
-  React.useEffect(() => {
-    if (modalImgRef.current && modalImgRef.current.complete) {
-      if (modalImgRef.current.naturalWidth === 320 && modalImgRef.current.naturalHeight === 320 && modalSrc.includes('postimg')) {
-        setModalImgError(true);
-      } else {
-        setImageDim({ width: modalImgRef.current.naturalWidth, height: modalImgRef.current.naturalHeight });
-        setIsModalImgLoaded(true);
+  // Handle cached modal images using a callback ref
+  const handleModalImageRef = React.useCallback((node: HTMLImageElement | null) => {
+    if (node) {
+      modalImgRef.current = node;
+      if (node.complete) {
+        if (node.naturalWidth === 0) {
+          setModalImgError(true);
+        } else if (node.naturalWidth === 320 && node.naturalHeight === 320 && modalSrc.includes('postimg')) {
+          setModalImgError(true);
+        } else {
+          setImageDim({ width: node.naturalWidth, height: node.naturalHeight });
+          setIsModalImgLoaded(true);
+        }
       }
     }
   }, [modalSrc]);
@@ -1010,7 +1024,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
             >
               {!modalImgError ? (
                 <img
-                  ref={modalImgRef}
+                  ref={handleModalImageRef}
                   src={modalSrc && modalSrc.startsWith('data:') ? modalSrc : encodeURI(modalSrc)}
                   alt={previewWork.title[locale]}
                   referrerPolicy="no-referrer"

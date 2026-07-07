@@ -96,7 +96,7 @@ export const About: React.FC<AboutProps> = ({ profile, locale }) => {
             <div className="relative group overflow-hidden rounded-3xl bg-zinc-900 aspect-square border border-zinc-800">
               {/* Profile Image with subtle scale */}
               <img
-                src={profile.avatarUrl}
+                src={profile.avatarUrl && profile.avatarUrl.startsWith('data:') ? profile.avatarUrl : encodeURI(profile.avatarUrl || '')}
                 alt={profile.name[locale]}
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover grayscale brightness-90 group-hover:scale-103 group-hover:grayscale-0 transition-all duration-700 ease-out"
