@@ -14,7 +14,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ profile, locale }) => {
   const handleScrollToNext = () => {
-    const next = document.getElementById('skills');
+    const next = document.getElementById('portfolio');
     if (next) {
       const offset = 90;
       const elementPosition = next.getBoundingClientRect().top + window.scrollY;
@@ -57,19 +57,9 @@ export const Hero: React.FC<HeroProps> = ({ profile, locale }) => {
           style={{ color: '#ffffff' }}
           id="hero-vanguard-title"
         >
-          {locale === 'zh' ? (
-            <>
-              设计.<br />
-              颠覆.<br />
-              匠心.
-            </>
-          ) : (
-            <>
-              Design.<br />
-              Disrupt.<br />
-              Craft.
-            </>
-          )}
+          Design.<br />
+          Disrupt.<br />
+          Craft.
         </h1>
 
         {/* 3. Subtext Paragraph */}

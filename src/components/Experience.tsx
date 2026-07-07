@@ -28,7 +28,7 @@ export const Experience: React.FC<ExperienceProps> = ({ experiences, locale, dar
               className="font-podium text-2xl sm:text-3xl text-white tracking-widest mb-3 uppercase"
               style={{ color: '#ffffff' }}
             >
-              {locale === 'zh' ? '03 // 个人履历' : '03 // CHRONOLOGY'}
+              {locale === 'zh' ? '03 个人履历' : '03 CHRONOLOGY'}
             </h2>
             <p className="font-podium text-3xl sm:text-4xl md:text-5xl text-zinc-100 uppercase tracking-wide leading-tight mt-4">
               {locale === 'zh' ? (
@@ -45,7 +45,7 @@ export const Experience: React.FC<ExperienceProps> = ({ experiences, locale, dar
             </p>
           </div>
           <p className="text-sm text-zinc-400 max-w-sm leading-relaxed text-left font-light font-inter mt-2 md:mt-12 md:pt-1">
-            {locale === 'zh' ? '作为先锋创意开发者，从经典三维物理视觉渲染，到深度定制开发专属 AI 神经网络风格流，我用扎实的创意产出与商业实绩，论证视觉重塑的无限可能。' : 'As a vanguard creative developer, bridging classic 3D physical mockups with custom-trained proprietary neural style pipelines, delivering real-world commercial results and infinite design possibilities.'}
+            {locale === 'zh' ? '作为深耕电商领域的资深视觉设计师，从高精度3D产品视觉渲染，到整店风格调性打造与爆款详情页定制，我用极具商业转化力的视觉创意与实打实的业绩提升，赋能品牌在市场中脱颖而出。' : 'As a veteran visual designer specializing in e-commerce, spanning high-precision 3D product rendering, complete store branding, and high-converting custom detail pages, I deliver high-impact visual creativity and solid commercial results to empower brands.'}
           </p>
         </div>
 

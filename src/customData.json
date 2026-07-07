@@ -1051,111 +1051,105 @@
   "experiences": [
     {
       "id": "exp-1",
-      "period": "2023.08 - 2024.08",
+      "period": "2025.9 - 2025.11",
       "role": {
-        "zh": "渲染设计师",
-        "en": "3D Rendering Designer"
+        "zh": "电商设计师",
+        "en": "E-commerce Designer"
       },
       "company": {
-        "zh": "三文鱼电子商务有限公司",
-        "en": "Chongqing Salmon E-commerce Co., Ltd."
+        "zh": "金运美科技",
+        "en": "Jinyunmei Technology"
       },
       "description": {
-        "zh": "负责公司3D产品效果图渲染、场景搭建、灯光质感表现及后期精修。与策划、运营团队密切配合，完成核心主图、详情页及促销海报的视觉落地，大幅提升产品转化率。",
-        "en": "Responsible for 3D product rendering, scene design, lighting, material texture modeling, and high-end photo retouching. Partnered with marketing and operations to execute core main images, details pages, and promotional banners, significantly boosting sales conversion rates."
+        "zh": "负责电商平台（APP/店铺）产品修图、详情页模板定制、活动促销首页制作、以及整体店铺风格打造、专业适配品牌企业 and 零售商需求",
+        "en": "Responsible for product image retouching, custom detail page templates, promotional event homepages, and overall shop visual branding on e-commerce platforms (apps/stores), professionally tailored to the needs of brand enterprises and retailers."
       },
       "highlights": {
         "zh": [
-          "主导3D化妆品、3D智能家居品类的光影物理搭建与精细化质感渲染",
-          "与视觉设计团队深度协作，主导爆款产品详情页中的核心三维渲染视觉呈现",
-          "建立并维护三维产品高精度模型库，提效日常渲染与合成产出流程"
+          "独立负责电商平台整体视觉风格升级，深度定制适配品牌与零售商差异化诉求的详情页模板",
+          "主导核心爆款产品的高精度修图与促销物料视觉设计，显著提升高转化率主图的视觉质感"
         ],
         "en": [
-          "Led lighting setups and premium material rendering for 3D cosmetics and smart home devices",
-          "Collaborated with visual designers to execute core 3D imagery for highly successful detail pages",
-          "Built and maintained a high-precision 3D asset library to accelerate rendering and compositing workflows"
+          "Independently led the visual style upgrade for e-commerce platforms, customizing detail page templates for diverse brand and retailer needs",
+          "Spearheaded high-precision product image retouching and campaign visual assets to boost click-through and conversion rates"
         ]
       }
     },
     {
       "id": "exp-2",
-      "period": "2021.05 - 2023.05",
+      "period": "2023.12 - 2025.7",
       "role": {
-        "zh": "视觉设计师",
-        "en": "Visual Designer"
+        "zh": "电商设计师",
+        "en": "E-commerce Designer"
       },
       "company": {
-        "zh": "视达科科技有限公司",
-        "en": "Beijing Starcor Technology Co., Ltd. (Chongqing Branch)"
+        "zh": "易宠科技",
+        "en": "Epets Technology"
       },
       "description": {
-        "zh": "负责IPTV/OTT等电视终端界面设计、大屏UI/UX交互视觉以及配套宣传物料设计。参与品牌VI升级和活动主视觉策划，确保多终端视觉体验的一致性与高质感。",
-        "en": "Responsible for IPTV/OTT television interface design, big-screen UI/UX interactive visuals, and marketing materials. Contributed to brand identity (VI) upgrades and core campaign key visuals to guarantee a high-end, consistent multi-terminal user experience."
+        "zh": "负责活动促销首页及店铺(APP)等平台、提供产品修图，产品主题，详情页模板制定、banner 以及整体店铺风格打造",
+        "en": "Responsible for promotional event homepages and shop designs for apps. Provided product retouching, product themes, detail page template formulation, banners, and overall store branding."
       },
       "highlights": {
         "zh": [
-          "主导多个省份广电IPTV大屏UI界面改版，在保持遥控器操作易用性的同时赋予极致视觉质感",
-          "负责各类线上专题活动主视觉及大屏动态视觉系统开发，具备出色的巨幅物料延展控制力",
-          "参与北京视达科重庆团队的品牌视觉体系重构，产出标准化设计规范手册"
+          "负责大促活动（双十一、年货节等）店铺首页及APP专题活动页的主视觉风格设计",
+          "定制多款高转化产品详情页模版及产品主题风格，打造兼具商业转化与艺术美感的品牌视觉"
         ],
         "en": [
-          "Led UI redesigns for IPTV big screens across multiple provinces, delivering premium visuals optimized for remote controls",
-          "Designed main visual packages for featured online campaign keynotes and television dynamic displays",
-          "Contributed to branding system restructuring and produced standardized design guidelines"
+          "Designed main visual styles for mega-promotions (Double 11, CNY) across store homepages and app-specific campaign pages",
+          "Formulated high-converting detail page templates and distinct product theme lines, merging retail conversion with clean design aesthetics"
         ]
       }
     },
     {
       "id": "exp-3",
-      "period": "2019.03 - 2021.03",
+      "period": "2021.9 - 2023.10",
       "role": {
-        "zh": "资深美工 / 视觉设计师",
-        "en": "Senior E-commerce Visual Designer"
+        "zh": "视觉设计师",
+        "en": "Visual Designer"
       },
       "company": {
-        "zh": "易宠科技有限公司",
-        "en": "Chongqing Epets Technology Co., Ltd."
+        "zh": "北京视达科",
+        "en": "Beijing Starcor"
       },
       "description": {
-        "zh": "负责宠物用品、宠物食品等自主品牌及代理品牌的电商全案视觉设计。主导双十一、年货节等大型S级大促活动店铺首页、详情页及推广图的设计，具备极强的电商视觉把控和爆款打造经验。",
-        "en": "Managed full-service e-commerce visual designs for proprietary pet care brands and licensed distributors. Guided S-level shopping festivals (e.g., Double 11, Chinese New Year Festival), customizing homepages, detail sections, and ad banners with outstanding conversion power."
+        "zh": "负责大屏panel页,推荐图、icon进行改版、移动智家中心的魔百和线上及线下平台、宣传海报、H5、朋友圈作图",
+        "en": "Responsible for redesigning big screen panel pages, recommendation graphics, and icons. Crafted promotional posters, H5 pages, and social media designs for Mobaihe online and offline platforms under the Mobile Smart Home Center."
       },
       "highlights": {
         "zh": [
-          "主导开发并沉淀了多个自主高端宠粮品牌的整套电商详情页视觉模版，建立极富吸引力的自然亲和质感",
-          "负责双十一、双十二、年货节大促周期的多渠道全套推广视觉系统，助力大促GMV破千万",
-          "精通宠物食品及用品的高级商业修图与拟真合成，极大提升了产品的轻奢高级感"
+          "主导IPTV大屏主页Panel及导航视觉系统升级，重构遥控器交互下的高清晰度图标与推荐图排版",
+          "独立承接线上专题H5推广页、宣传海报及朋友圈宣发物料设计，确保多端分发视觉的高度一致性"
         ],
         "en": [
-          "Led and standardized visual templates for premium pet food detail pages, evoking natural organic warmth",
-          "Designed multi-channel visual assets for mega-promos (Double 11, 12, CNY) supporting massive GMV milestones",
-          "Expert in professional commercial photo retouching and hyper-realistic pet product composites"
+          "Led the overhaul of IPTV home page panels and icon systems, optimizing layout and clarity for remote-controlled interfaces",
+          "Independently created promotional H5 pages, print posters, and social graphics, maintaining a cohesive identity across diverse channels"
         ]
       }
     },
     {
       "id": "exp-4",
-      "period": "2018.06 - 2019.01",
+      "period": "2019.6 - 2021.7",
       "role": {
-        "zh": "美工 / 平面设计师",
-        "en": "E-commerce Graphic Designer"
+        "zh": "电商设计师",
+        "en": "E-commerce Designer"
       },
       "company": {
-        "zh": "金运美科技有限公司",
-        "en": "Jinyunmei Technology Co., Ltd."
+        "zh": "三文鱼电商",
+        "en": "Salmon E-commerce"
       },
       "description": {
-        "zh": "负责数码配件产品精修、主图排版、基础详情页制作。协助团队完成日常活动图、详情页更新以及跨境电商平台（Amazon、eBay）的图片优化。",
-        "en": "Responsible for digital accessories professional photo retouching, core product cards, and basic details pages. Assisted in daily updates, promotional graphics, and optimization for global platforms (Amazon, eBay)."
+        "zh": "负责店铺(淘宝、京东、拼多多)等平台提供产品修图、促销页面以及整体店铺风格打造、产品主题，banner，详情页模板制定",
+        "en": "Responsible for product image retouching, promotional pages, overall store styling, product themes, banner designs, and detail page template formulation across platforms such as Taobao, JD.com, and Pinduoduo."
       },
       "highlights": {
         "zh": [
-          "负责数码充电头、充电线、蓝牙耳机等3C配件的高质量精修，大幅消除塑料感，突出金属与科技光影",
-          "优化Amazon/eBay平台Listing首图及A+页面视觉排版，使其符合海外消费者极简、理性的读图习惯"
+          "完成跨平台多店铺的整体视觉形象建立与日常店铺促销页面、KV主视觉的升级维护",
+          "制定统一的产品图修图规范与详情页组件化模板，大幅提升设计团队的日常上新输出效率"
         ],
         "en": [
-          "Executed high-quality retouching for 3C products, transforming cheap plastic materials into sleek metallic finishes",
-          "Optimized Amazon/eBay listing cards and A+ detail pages tailored for international minimalist visual habits"
+          "Established the overall visual brand identity and drove key visual upgrades for multi-platform e-commerce storefronts",
+          "Formulated unified retouching guidelines and modular detail templates, significantly boosting asset production efficiency"
         ]
       }
     }

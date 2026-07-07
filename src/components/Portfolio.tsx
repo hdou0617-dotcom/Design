@@ -712,7 +712,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
               className="font-podium text-2xl sm:text-3xl text-white tracking-widest mb-3 uppercase"
               style={{ color: '#ffffff' }}
             >
-              02 CREATIONS
+              {locale === 'zh' ? '02 创意作品' : '02 CREATIONS'}
             </h2>
             <p className="font-podium text-3xl sm:text-4xl md:text-5xl text-zinc-100 uppercase tracking-wide leading-tight mt-4">
               {locale === 'zh' ? (
