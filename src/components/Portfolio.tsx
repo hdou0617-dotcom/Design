@@ -119,7 +119,7 @@ const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className
       if (node.complete) {
         if (node.naturalWidth === 320 && node.naturalHeight === 320 && currentSrc.includes('postimg')) {
           setHasError(true);
-        } else if (node.naturalWidth > 0) {
+        } else {
           setLoaded(true);
         }
       }
@@ -517,8 +517,10 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
       if (node.complete) {
         if (node.naturalWidth === 320 && node.naturalHeight === 320 && modalSrc.includes('postimg')) {
           setModalImgError(true);
-        } else if (node.naturalWidth > 0) {
-          setImageDim({ width: node.naturalWidth, height: node.naturalHeight });
+        } else {
+          if (node.naturalWidth > 0) {
+            setImageDim({ width: node.naturalWidth, height: node.naturalHeight });
+          }
           setIsModalImgLoaded(true);
         }
       }
