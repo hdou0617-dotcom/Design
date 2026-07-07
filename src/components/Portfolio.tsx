@@ -94,6 +94,7 @@ const LOCAL_IMAGE_FALLBACKS: Record<string, string> = {
 const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className = "w-full h-full object-cover", isThumbnail = false }) => {
   const [hasError, setHasError] = React.useState(false);
   const [loaded, setLoaded] = React.useState(false);
+  const imgRef = React.useRef<HTMLImageElement>(null);
 
   const getImageUrl = (url: string, thumb: boolean) => {
     if (thumb && url && url.startsWith('/3D Rendering/')) {
@@ -110,6 +111,17 @@ const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className
     setLoaded(false);
     setCurrentSrc(getImageUrl(work.imageUrl, isThumbnail));
   }, [work.imageUrl, isThumbnail]);
+
+  // Handle cached images on mount or URL change
+  React.useEffect(() => {
+    if (imgRef.current && imgRef.current.complete) {
+      if (imgRef.current.naturalWidth === 320 && imgRef.current.naturalHeight === 320 && currentSrc.includes('postimg')) {
+        setHasError(true);
+      } else {
+        setLoaded(true);
+      }
+    }
+  }, [currentSrc]);
 
   // Render a beautiful, highly stylized native vector mockup for the design work
   const renderMockup = () => {
@@ -401,6 +413,7 @@ const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className
       {/* Actual Image overlaying on top */}
       {!hasError && (
         <img
+          ref={imgRef}
           src={currentSrc && currentSrc.startsWith('data:') ? currentSrc : encodeURI(currentSrc)}
           alt={work.title[locale]}
           referrerPolicy="no-referrer"
@@ -474,6 +487,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
   const [isModalImgLoaded, setIsModalImgLoaded] = React.useState(false);
   const [modalImgError, setModalImgError] = React.useState(false);
   const [modalSrc, setModalSrc] = React.useState<string>('');
+  const modalImgRef = React.useRef<HTMLImageElement>(null);
 
   const activeColors = previewWork ? getColorsForWork(previewWork.id) : [];
 
@@ -487,6 +501,18 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
       setModalSrc(previewWork.imageUrl);
     }
   }, [previewWork]);
+
+  // Handle cached modal images
+  React.useEffect(() => {
+    if (modalImgRef.current && modalImgRef.current.complete) {
+      if (modalImgRef.current.naturalWidth === 320 && modalImgRef.current.naturalHeight === 320 && modalSrc.includes('postimg')) {
+        setModalImgError(true);
+      } else {
+        setImageDim({ width: modalImgRef.current.naturalWidth, height: modalImgRef.current.naturalHeight });
+        setIsModalImgLoaded(true);
+      }
+    }
+  }, [modalSrc]);
 
   const currentCategoryWorks = React.useMemo(() => {
     if (selectedCategory === 'all') {
@@ -984,6 +1010,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
             >
               {!modalImgError ? (
                 <img
+                  ref={modalImgRef}
                   src={modalSrc && modalSrc.startsWith('data:') ? modalSrc : encodeURI(modalSrc)}
                   alt={previewWork.title[locale]}
                   referrerPolicy="no-referrer"
