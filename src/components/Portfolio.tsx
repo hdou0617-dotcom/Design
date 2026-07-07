@@ -44,24 +44,24 @@ interface PortfolioImageProps {
 
 const LOCAL_IMAGE_FALLBACKS: Record<string, string> = {
   // 3D Rendering Fallbacks
-  "/3D Rendering/下坠.jpg": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000",
-  "/3D Rendering/南匠酒.jpg": "https://images.unsplash.com/photo-1569529465841-dfedd8d5043d?q=80&w=1000",
-  "/3D Rendering/厨房洗地机.jpg": "https://images.unsplash.com/photo-1581842239015-0a17f22ca451?q=80&w=1000",
-  "/3D Rendering/奶瓶.jpg": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=1000",
-  "/3D Rendering/扫地机.jpg": "https://images.unsplash.com/photo-1618090584126-129cd1f3f94c?q=80&w=1000",
-  "/3D Rendering/护发套装.jpg": "https://images.unsplash.com/photo-1526947425960-945c6e72858f?q=80&w=1000",
-  "/3D Rendering/护肤套装1.jpg": "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=1000",
-  "/3D Rendering/护肤套装2.jpg": "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1000",
-  "/3D Rendering/火锅包装.jpg": "https://images.unsplash.com/photo-1554998171-7e599bc95ccd?q=80&w=1000",
-  "/3D Rendering/牙刷.jpg": "https://images.unsplash.com/photo-1559599101-f09722fb4948?q=80&w=1000",
-  "/3D Rendering/空气净化器.jpg": "https://images.unsplash.com/photo-1585338107529-13afc5f02586?q=80&w=1000",
-  "/3D Rendering/精华液2.jpg": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?q=80&w=1000",
-  "/3D Rendering/精华液.jpg": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1000",
-  "/3D Rendering/纸巾.jpg": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000",
-  "/3D Rendering/纸巾 (2).jpg": "https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=1000",
-  "/3D Rendering/酱酒.jpg": "https://images.unsplash.com/photo-1543007630-9710e4a00a20?q=80&w=1000",
-  "/3D Rendering/除湿器.jpg": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000",
-  "/3D Rendering/香体露.jpg": "https://images.unsplash.com/photo-1602928321679-560bb453f190?q=80&w=1000",
+  "/3d_rendering/xiazhui.jpg": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000",
+  "/3d_rendering/nanjiangjiu.jpg": "https://images.unsplash.com/photo-1569529465841-dfedd8d5043d?q=80&w=1000",
+  "/3d_rendering/chufangxidiji.jpg": "https://images.unsplash.com/photo-1581842239015-0a17f22ca451?q=80&w=1000",
+  "/3d_rendering/naiping.jpg": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=1000",
+  "/3d_rendering/saodiji.jpg": "https://images.unsplash.com/photo-1618090584126-129cd1f3f94c?q=80&w=1000",
+  "/3d_rendering/hufataozhuang.jpg": "https://images.unsplash.com/photo-1526947425960-945c6e72858f?q=80&w=1000",
+  "/3d_rendering/hufutaozhuang1.jpg": "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=1000",
+  "/3d_rendering/hufutaozhuang2.jpg": "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1000",
+  "/3d_rendering/huoguobaozhuang.jpg": "https://images.unsplash.com/photo-1554998171-7e599bc95ccd?q=80&w=1000",
+  "/3d_rendering/yashua.jpg": "https://images.unsplash.com/photo-1559599101-f09722fb4948?q=80&w=1000",
+  "/3d_rendering/kongqijinghuaqi.jpg": "https://images.unsplash.com/photo-1585338107529-13afc5f02586?q=80&w=1000",
+  "/3d_rendering/jinghuaye2.jpg": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?q=80&w=1000",
+  "/3d_rendering/jinghuaye.jpg": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1000",
+  "/3d_rendering/zhijin.jpg": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000",
+  "/3d_rendering/zhijin2.jpg": "https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=1000",
+  "/3d_rendering/jiangjiu.jpg": "https://images.unsplash.com/photo-1543007630-9710e4a00a20?q=80&w=1000",
+  "/3d_rendering/chushiqi.jpg": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000",
+  "/3d_rendering/xiangtilu.jpg": "https://images.unsplash.com/photo-1602928321679-560bb453f190?q=80&w=1000",
 
   // Legacy/Alternate Fallbacks
   "/poster/下坠20136 拷贝.png": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000",
@@ -69,26 +69,26 @@ const LOCAL_IMAGE_FALLBACKS: Record<string, string> = {
   "/poster/精华液2.jpg": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?q=80&w=1000",
   "/poster/精华液.png": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1000",
   "/poster/香体露.png": "https://images.unsplash.com/photo-1602928321679-560bb453f190?q=80&w=1000",
-  "/New media/banner1.jpg": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1000",
-  "/New media/banner2.jpg": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1000",
-  "/New media/banner3.jpg": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000",
-  "/New media/banner4.jpg": "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1000",
-  "/New media/背景2 (1).png": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000",
-  "/New media/背景2 (2).jpg": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000",
-  "/New media/贴片1.jpg": "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=1000",
-  "/New media/贴片2.png": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1000",
-  "/New media/贴片3.png": "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=1000",
-  "/New media/贴片4.jpg": "https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?q=80&w=1000",
-  "/New media/贴片5.jpg": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1000",
-  "/Details Page/隔离霜.jpg": "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1000",
-  "/Details Page/口红.jpg": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=1000",
-  "/Details Page/焕肤液.jpg": "https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=1000",
-  "/Details Page/洗发沐浴.jpg": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?q=80&w=1000",
-  "/Details Page/消毒柜.jpg": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000",
-  "/Details Page/家居.jpg": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000",
-  "/Details Page/烫染推车.jpg": "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1000",
-  "/Details Page/暖桌.jpg": "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1000",
-  "/Details Page/网站2.jpg": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000"
+  "/new_media/banner1.jpg": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1000",
+  "/new_media/banner2.jpg": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1000",
+  "/new_media/banner3.jpg": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000",
+  "/new_media/banner4.jpg": "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1000",
+  "/new_media/beijing1.jpg": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000",
+  "/new_media/beijing2.jpg": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000",
+  "/new_media/tiepian1.jpg": "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=1000",
+  "/new_media/tiepian2.jpg": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1000",
+  "/new_media/tiepian3.jpg": "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=1000",
+  "/new_media/tiepian4.jpg": "https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?q=80&w=1000",
+  "/new_media/tiepian5.jpg": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1000",
+  "/details_page/gelishuang.jpg": "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1000",
+  "/details_page/kouhong.jpg": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=1000",
+  "/details_page/huanfuye.jpg": "https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=1000",
+  "/details_page/xifamuyu.jpg": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?q=80&w=1000",
+  "/details_page/xiaodugui.jpg": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000",
+  "/details_page/jiaju.jpg": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000",
+  "/details_page/tangrantuiche.jpg": "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1000",
+  "/details_page/nuanzhuo.jpg": "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1000",
+  "/details_page/wangzhan2.jpg": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000"
 };
 
 const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className = "w-full h-full object-cover", isThumbnail = false }) => {
@@ -97,8 +97,9 @@ const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className
   const imgRef = React.useRef<HTMLImageElement>(null);
 
   const getImageUrl = (url: string, thumb: boolean) => {
-    // Note: Do not replace with '/temp_small/' as files in that directory are corrupted binary files.
-    // Using the original high-resolution path directly ensures pristine visual quality and 100% successful loads.
+    if (thumb && url && url.startsWith('/')) {
+      return `/temp_small${url}`;
+    }
     return url;
   };
 
@@ -434,8 +435,8 @@ const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className
               console.warn(`Local file ${currentSrc} not found, falling back to Unsplash URL: ${fallbackUrl}`);
               setCurrentSrc(fallbackUrl);
             } else if (currentSrc && currentSrc.includes('/temp_small/')) {
-              // Smart recovery: fall back to original 3D Rendering folder if temp_small thumbnail fails to load
-              const originalUrl = currentSrc.replace('/temp_small/', '/3D Rendering/');
+              // Smart recovery: fall back to original high-res folder if temp_small thumbnail fails to load
+              const originalUrl = currentSrc.replace('/temp_small', '');
               console.warn(`Thumbnail ${currentSrc} failed, retrying with original high-res image: ${originalUrl}`);
               setCurrentSrc(originalUrl);
             } else if (currentSrc && currentSrc.startsWith('/') && !currentSrc.startsWith('/poster/') && !currentSrc.startsWith('/assets/')) {
