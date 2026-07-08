@@ -12,10 +12,11 @@ import { initialWorks } from "./src/worksData";
 async function startServer() {
   const app = express();
   
-  // Use the environment port in production, and default to 3000 in development
-  const PORT = process.env.NODE_ENV === "production" && process.env.PORT
-    ? parseInt(process.env.PORT, 10)
-    : 3000;
+  // In development, strictly listen on port 3000 (required for the workspace proxy).
+  // In production (Cloud Run), listen on the port provided by the environment variable.
+  const PORT = process.env.NODE_ENV === "development"
+    ? 3000
+    : (process.env.PORT ? parseInt(process.env.PORT, 10) : 8080);
 
   // Support large base64 image transfers (for custom uploaded local files)
   app.use(express.json({ limit: "50mb" }));
