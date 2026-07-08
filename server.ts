@@ -12,14 +12,15 @@ import { initialWorks } from "./src/worksData";
 async function startServer() {
   const app = express();
   
-  // Check if running in production mode (running the bundled .cjs, or NODE_ENV === "production", or source server.ts is missing)
-  const isProduction = process.env.NODE_ENV === "production" || 
-                       __filename.endsWith(".cjs") || 
-                       !fs.existsSync(path.join(process.cwd(), "server.ts"));
+  // Determine if we are running in the AI Studio development workspace.
+  // In development, the Cloud Run service name (K_SERVICE) starts with "ais-dev-".
+  // In the shared/production applet, it starts with "ais-pre-".
+  const isDevWorkspace = process.env.K_SERVICE?.startsWith("ais-dev-") ?? true;
+  const isProduction = !isDevWorkspace;
 
-  // In development, strictly listen on port 3000 (required for the workspace proxy).
-  // In production (Cloud Run), listen on the port provided by the environment variable.
-  const PORT = !isProduction
+  // We strictly listen on port 3000 in the development workspace (required for proxying).
+  // In production (Cloud Run), we listen on the port provided by the environment variable (usually 8080).
+  const PORT = isDevWorkspace
     ? 3000
     : (process.env.PORT ? parseInt(process.env.PORT, 10) : 8080);
 
