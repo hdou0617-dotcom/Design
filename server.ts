@@ -12,9 +12,14 @@ import { initialWorks } from "./src/worksData";
 async function startServer() {
   const app = express();
   
+  // Check if running in production mode (running the bundled .cjs, or NODE_ENV === "production", or source server.ts is missing)
+  const isProduction = process.env.NODE_ENV === "production" || 
+                       __filename.endsWith(".cjs") || 
+                       !fs.existsSync(path.join(process.cwd(), "server.ts"));
+
   // In development, strictly listen on port 3000 (required for the workspace proxy).
   // In production (Cloud Run), listen on the port provided by the environment variable.
-  const PORT = process.env.NODE_ENV === "development"
+  const PORT = !isProduction
     ? 3000
     : (process.env.PORT ? parseInt(process.env.PORT, 10) : 8080);
 
@@ -125,8 +130,6 @@ async function startServer() {
 
   // Serve Frontend / Vite Middleware
   const distPath = path.join(process.cwd(), "dist");
-  const hasDist = fs.existsSync(distPath);
-  const isProduction = process.env.NODE_ENV === "production" || hasDist;
 
   if (!isProduction) {
     try {

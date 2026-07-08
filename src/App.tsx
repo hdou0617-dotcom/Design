@@ -57,17 +57,17 @@ const migrateWorksToLocalPublic = (parsed: PortfolioWork[]): PortfolioWork[] => 
     "/illustration/chahua6.jpg": "/Illustration/插画6.jpg",
 
     // New Media (User uploaded under "new_media" with Chinese names)
-    "/new_media/banner1.jpg": "/new_media/banner1.jpg",
-    "/new_media/banner2.jpg": "/new_media/banner2.jpg",
-    "/new_media/banner3.jpg": "/new_media/banner3.jpg",
-    "/new_media/banner4.jpg": "/new_media/banner4.jpg",
-    "/new_media/beijing1.jpg": "/new_media/背景1.jpg",
-    "/new_media/beijing2.jpg": "/new_media/背景2.jpg",
-    "/new_media/tiepian1.jpg": "/new_media/贴片1.jpg",
-    "/new_media/tiepian2.jpg": "/new_media/贴片2.jpg",
-    "/new_media/tiepian3.jpg": "/new_media/贴片3.jpg",
-    "/new_media/tiepian4.jpg": "/new_media/贴片4.jpg",
-    "/new_media/tiepian5.jpg": "/new_media/贴片5.jpg"
+    "/new_media/banner1.jpg": "/New media/banner1.jpg",
+    "/new_media/banner2.jpg": "/New media/banner2.jpg",
+    "/new_media/banner3.jpg": "/New media/banner3.jpg",
+    "/new_media/banner4.jpg": "/New media/banner4.jpg",
+    "/new_media/beijing1.jpg": "/New media/背景1.jpg",
+    "/new_media/beijing2.jpg": "/New media/背景2.jpg",
+    "/new_media/tiepian1.jpg": "/New media/贴片1.jpg",
+    "/new_media/tiepian2.jpg": "/New media/贴片2.jpg",
+    "/new_media/tiepian3.jpg": "/New media/贴片3.jpg",
+    "/new_media/tiepian4.jpg": "/New media/贴片4.jpg",
+    "/new_media/tiepian5.jpg": "/New media/贴片5.jpg"
   };
 
   const FILENAME_MAPPING: Record<string, string> = {
@@ -146,20 +146,20 @@ const migrateWorksToLocalPublic = (parsed: PortfolioWork[]): PortfolioWork[] => 
     "插画6.jpg": "/Illustration/插画6.jpg",
     "chahua6.jpg": "/Illustration/插画6.jpg",
 
-    "背景1.jpg": "/new_media/背景1.jpg",
-    "beijing1.jpg": "/new_media/背景1.jpg",
-    "背景2.jpg": "/new_media/背景2.jpg",
-    "beijing2.jpg": "/new_media/背景2.jpg",
-    "贴片1.jpg": "/new_media/贴片1.jpg",
-    "tiepian1.jpg": "/new_media/贴片1.jpg",
-    "贴片2.jpg": "/new_media/贴片2.jpg",
-    "tiepian2.jpg": "/new_media/贴片2.jpg",
-    "贴片3.jpg": "/new_media/贴片3.jpg",
-    "tiepian3.jpg": "/new_media/贴片3.jpg",
-    "贴片4.jpg": "/new_media/贴片4.jpg",
-    "tiepian4.jpg": "/new_media/贴片4.jpg",
-    "贴片5.jpg": "/new_media/贴片5.jpg",
-    "tiepian5.jpg": "/new_media/贴片5.jpg"
+    "背景1.jpg": "/New media/背景1.jpg",
+    "beijing1.jpg": "/New media/背景1.jpg",
+    "背景2.jpg": "/New media/背景2.jpg",
+    "beijing2.jpg": "/New media/背景2.jpg",
+    "贴片1.jpg": "/New media/贴片1.jpg",
+    "tiepian1.jpg": "/New media/贴片1.jpg",
+    "贴片2.jpg": "/New media/贴片2.jpg",
+    "tiepian2.jpg": "/New media/贴片2.jpg",
+    "贴片3.jpg": "/New media/贴片3.jpg",
+    "tiepian3.jpg": "/New media/贴片3.jpg",
+    "贴片4.jpg": "/New media/贴片4.jpg",
+    "tiepian4.jpg": "/New media/贴片4.jpg",
+    "贴片5.jpg": "/New media/贴片5.jpg",
+    "tiepian5.jpg": "/New media/贴片5.jpg"
   };
 
   return parsed.map(w => {
