@@ -15,27 +15,185 @@ import { DesignerProfile, PortfolioWork, SkillItem, ExperienceItem, Locale } fro
 import { initialProfile, initialWorks, initialSkills, initialExperiences } from './data';
 import { Settings, Globe, Heart } from 'lucide-react';
 
-const migrateWorksToPoster = (parsed: PortfolioWork[]): PortfolioWork[] => {
-  const filenames = [
-    "下坠20136 拷贝.png", "南匠酒.jpg", "厨房洗地机.png", "奶瓶.jpg", "扫地机.jpg",
-    "护发套装.jpg", "护肤套装1.png", "护肤套装2.png", "火锅包装.jpg", "牙刷.jpg",
-    "空气净化器.jpg", "精华液2.jpg", "精华液.png", "纸巾.jpg", "纸巾 (2).jpg",
-    "酱酒.jpg", "除湿器.jpg", "香体露.png"
-  ];
+const migrateWorksToLocalPublic = (parsed: PortfolioWork[]): PortfolioWork[] => {
+  const PATH_MAPPING: Record<string, string> = {
+    // 3D Rendering
+    "/3d_rendering/xiazhui.jpg": "/3d_rendering/下坠.jpg",
+    "/3d_rendering/nanjiangjiu.jpg": "/3d_rendering/南匠酒.jpg",
+    "/3d_rendering/chufangxidiji.jpg": "/3d_rendering/厨房洗地机.jpg",
+    "/3d_rendering/naiping.jpg": "/3d_rendering/奶瓶.jpg",
+    "/3d_rendering/saodiji.jpg": "/3d_rendering/扫地机.jpg",
+    "/3d_rendering/hufataozhuang.jpg": "/3d_rendering/护发套装.jpg",
+    "/3d_rendering/hufutaozhuang1.jpg": "/3d_rendering/护肤套装1.jpg",
+    "/3d_rendering/hufutaozhuang2.jpg": "/3d_rendering/护肤套装2.jpg",
+    "/3d_rendering/huoguobaozhuang.jpg": "/3d_rendering/火锅包装.jpg",
+    "/3d_rendering/yashua.jpg": "/3d_rendering/牙刷.jpg",
+    "/3d_rendering/kongqijinghuaqi.jpg": "/3d_rendering/空气净化器.jpg",
+    "/3d_rendering/jinghuaye2.jpg": "/3d_rendering/精华液2.jpg",
+    "/3d_rendering/jinghuaye.jpg": "/3d_rendering/精华液.jpg",
+    "/3d_rendering/zhijin.jpg": "/3d_rendering/纸巾.jpg",
+    "/3d_rendering/zhijin2.jpg": "/3d_rendering/纸巾 (2).jpg",
+    "/3d_rendering/jiangjiu.jpg": "/3d_rendering/酱酒.jpg",
+    "/3d_rendering/chushiqi.jpg": "/3d_rendering/除湿器.jpg",
+    "/3d_rendering/xiangtilu.jpg": "/3d_rendering/香体露.jpg",
+
+    // Details Page (User uploaded in "Details page")
+    "/details_page/gelishuang.jpg": "/Details page/隔离霜.jpg",
+    "/details_page/kouhong.jpg": "/Details page/口红.jpg",
+    "/details_page/huanfuye.jpg": "/Details page/焕肤液.jpg",
+    "/details_page/xifamuyu.jpg": "/Details page/洗发沐浴.jpg",
+    "/details_page/xiaodugui.jpg": "/Details page/消毒柜.jpg",
+    "/details_page/jiaju.jpg": "/Details page/家居.jpg",
+    "/details_page/tangrantuiche.jpg": "/Details page/烫染推车.jpg",
+    "/details_page/nuanzhuo.jpg": "/Details page/暖桌.jpg",
+    "/details_page/wangzhan2.jpg": "/Details page/网站2.jpg",
+
+    // Illustration (User uploaded in "Illustration")
+    "/illustration/chahua1.jpg": "/Illustration/插画1.jpg",
+    "/illustration/chahua2.jpg": "/Illustration/插画2.jpg",
+    "/illustration/chahua3.jpg": "/Illustration/插画3.jpg",
+    "/illustration/chahua4.jpg": "/Illustration/插画4.jpg",
+    "/illustration/chahua5.jpg": "/Illustration/插画5.jpg",
+    "/illustration/chahua6.jpg": "/Illustration/插画6.jpg",
+
+    // New Media (User uploaded under "new_media" with Chinese names)
+    "/new_media/banner1.jpg": "/new_media/banner1.jpg",
+    "/new_media/banner2.jpg": "/new_media/banner2.jpg",
+    "/new_media/banner3.jpg": "/new_media/banner3.jpg",
+    "/new_media/banner4.jpg": "/new_media/banner4.jpg",
+    "/new_media/beijing1.jpg": "/new_media/背景1.jpg",
+    "/new_media/beijing2.jpg": "/new_media/背景2.jpg",
+    "/new_media/tiepian1.jpg": "/new_media/贴片1.jpg",
+    "/new_media/tiepian2.jpg": "/new_media/贴片2.jpg",
+    "/new_media/tiepian3.jpg": "/new_media/贴片3.jpg",
+    "/new_media/tiepian4.jpg": "/new_media/贴片4.jpg",
+    "/new_media/tiepian5.jpg": "/new_media/贴片5.jpg"
+  };
+
+  const FILENAME_MAPPING: Record<string, string> = {
+    "下坠.jpg": "/3d_rendering/下坠.jpg",
+    "下坠20136 拷贝.png": "/3d_rendering/下坠.jpg",
+    "xiazhui.jpg": "/3d_rendering/下坠.jpg",
+    "南匠酒.jpg": "/3d_rendering/南匠酒.jpg",
+    "nanjiangjiu.jpg": "/3d_rendering/南匠酒.jpg",
+    "厨房洗地机.jpg": "/3d_rendering/厨房洗地机.jpg",
+    "厨房洗地机.png": "/3d_rendering/厨房洗地机.jpg",
+    "chufangxidiji.jpg": "/3d_rendering/厨房洗地机.jpg",
+    "奶瓶.jpg": "/3d_rendering/奶瓶.jpg",
+    "naiping.jpg": "/3d_rendering/奶瓶.jpg",
+    "扫地机.jpg": "/3d_rendering/扫地机.jpg",
+    "saodiji.jpg": "/3d_rendering/扫地机.jpg",
+    "护发套装.jpg": "/3d_rendering/护发套装.jpg",
+    "hufataozhuang.jpg": "/3d_rendering/护发套装.jpg",
+    "护肤套装1.jpg": "/3d_rendering/护肤套装1.jpg",
+    "护肤套装1.png": "/3d_rendering/护肤套装1.jpg",
+    "hufutaozhuang1.jpg": "/3d_rendering/护肤套装1.jpg",
+    "护肤套装2.jpg": "/3d_rendering/护肤套装2.jpg",
+    "护肤套装2.png": "/3d_rendering/护肤套装2.jpg",
+    "hufutaozhuang2.jpg": "/3d_rendering/护肤套装2.jpg",
+    "火锅包装.jpg": "/3d_rendering/火锅包装.jpg",
+    "huoguobaozhuang.jpg": "/3d_rendering/火锅包装.jpg",
+    "牙刷.jpg": "/3d_rendering/牙刷.jpg",
+    "yashua.jpg": "/3d_rendering/牙刷.jpg",
+    "空气净化器.jpg": "/3d_rendering/空气净化器.jpg",
+    "kongqijinghuaqi.jpg": "/3d_rendering/空气净化器.jpg",
+    "精华液2.jpg": "/3d_rendering/精华液2.jpg",
+    "jinghuaye2.jpg": "/3d_rendering/精华液2.jpg",
+    "精华液.jpg": "/3d_rendering/精华液.jpg",
+    "精华液.png": "/3d_rendering/精华液.jpg",
+    "jinghuaye.jpg": "/3d_rendering/精华液.jpg",
+    "纸巾.jpg": "/3d_rendering/纸巾.jpg",
+    "zhijin.jpg": "/3d_rendering/纸巾.jpg",
+    "纸巾 (2).jpg": "/3d_rendering/纸巾 (2).jpg",
+    "zhijin2.jpg": "/3d_rendering/纸巾 (2).jpg",
+    "酱酒.jpg": "/3d_rendering/酱酒.jpg",
+    "jiangjiu.jpg": "/3d_rendering/酱酒.jpg",
+    "除湿器.jpg": "/3d_rendering/除湿器.jpg",
+    "chushiqi.jpg": "/3d_rendering/除湿器.jpg",
+    "香体露.jpg": "/3d_rendering/香体露.jpg",
+    "香体露.png": "/3d_rendering/香体露.jpg",
+    "xiangtilu.jpg": "/3d_rendering/香体露.jpg",
+
+    "隔离霜.jpg": "/Details page/隔离霜.jpg",
+    "gelishuang.jpg": "/Details page/隔离霜.jpg",
+    "口红.jpg": "/Details page/口红.jpg",
+    "kouhong.jpg": "/Details page/口红.jpg",
+    "焕肤液.jpg": "/Details page/焕肤液.jpg",
+    "huanfuye.jpg": "/Details page/焕肤液.jpg",
+    "洗发沐浴.jpg": "/Details page/洗发沐浴.jpg",
+    "xifamuyu.jpg": "/Details page/洗发沐浴.jpg",
+    "消毒柜.jpg": "/Details page/消毒柜.jpg",
+    "xiaodugui.jpg": "/Details page/消毒柜.jpg",
+    "家居.jpg": "/Details page/家居.jpg",
+    "jiaju.jpg": "/Details page/家居.jpg",
+    "烫染推车.jpg": "/Details page/烫染推车.jpg",
+    "tangrantuiche.jpg": "/Details page/烫染推车.jpg",
+    "暖桌.jpg": "/Details page/暖桌.jpg",
+    "nuanzhuo.jpg": "/Details page/暖桌.jpg",
+    "网站2.jpg": "/Details page/网站2.jpg",
+    "wangzhan2.jpg": "/Details page/网站2.jpg",
+
+    "插画1.jpg": "/Illustration/插画1.jpg",
+    "chahua1.jpg": "/Illustration/插画1.jpg",
+    "插画2.jpg": "/Illustration/插画2.jpg",
+    "chahua2.jpg": "/Illustration/插画2.jpg",
+    "插画3.jpg": "/Illustration/插画3.jpg",
+    "chahua3.jpg": "/Illustration/插画3.jpg",
+    "插画4.jpg": "/Illustration/插画4.jpg",
+    "chahua4.jpg": "/Illustration/插画4.jpg",
+    "插画5.jpg": "/Illustration/插画5.jpg",
+    "chahua5.jpg": "/Illustration/插画5.jpg",
+    "插画6.jpg": "/Illustration/插画6.jpg",
+    "chahua6.jpg": "/Illustration/插画6.jpg",
+
+    "背景1.jpg": "/new_media/背景1.jpg",
+    "beijing1.jpg": "/new_media/背景1.jpg",
+    "背景2.jpg": "/new_media/背景2.jpg",
+    "beijing2.jpg": "/new_media/背景2.jpg",
+    "贴片1.jpg": "/new_media/贴片1.jpg",
+    "tiepian1.jpg": "/new_media/贴片1.jpg",
+    "贴片2.jpg": "/new_media/贴片2.jpg",
+    "tiepian2.jpg": "/new_media/贴片2.jpg",
+    "贴片3.jpg": "/new_media/贴片3.jpg",
+    "tiepian3.jpg": "/new_media/贴片3.jpg",
+    "贴片4.jpg": "/new_media/贴片4.jpg",
+    "tiepian4.jpg": "/new_media/贴片4.jpg",
+    "贴片5.jpg": "/new_media/贴片5.jpg",
+    "tiepian5.jpg": "/new_media/贴片5.jpg"
+  };
+
   return parsed.map(w => {
-    if (w.imageUrl && w.imageUrl.startsWith('/') && !w.imageUrl.startsWith('/poster/') && !w.imageUrl.startsWith('/assets/')) {
-      const name = w.imageUrl.substring(1);
-      if (filenames.includes(name)) {
-        return { ...w, imageUrl: `/poster/${name}` };
-      }
+    if (!w.imageUrl) return w;
+
+    let targetUrl = w.imageUrl;
+
+    // 1. Direct path mapping check
+    if (PATH_MAPPING[targetUrl]) {
+      return { ...w, imageUrl: PATH_MAPPING[targetUrl] };
     }
+
+    // 2. Map legacy /poster/ prefix
+    const cleanPath = targetUrl.startsWith('/poster/') 
+      ? targetUrl.replace('/poster/', '/') 
+      : (targetUrl.startsWith('/') ? targetUrl : '/' + targetUrl);
+
+    if (PATH_MAPPING[cleanPath]) {
+      return { ...w, imageUrl: PATH_MAPPING[cleanPath] };
+    }
+
+    // 3. Filename match
+    const cleanFilename = targetUrl.split('/').pop() || '';
+    if (FILENAME_MAPPING[cleanFilename]) {
+      return { ...w, imageUrl: FILENAME_MAPPING[cleanFilename] };
+    }
+
     return w;
   });
 };
 
 export default function App() {
   // Clear cached local storage on new builds to ensure Netlify/Cloudflare visitors see the updated content immediately
-  const CURRENT_VERSION = "v1.3.0";
+  const CURRENT_VERSION = "v1.5.0";
   try {
     const savedVersion = localStorage.getItem('dou_portfolio_app_version');
     if (savedVersion !== CURRENT_VERSION) {
@@ -112,7 +270,7 @@ export default function App() {
         return true;
       });
 
-      const migrated = migrateWorksToPoster(filtered);
+      const migrated = migrateWorksToLocalPublic(filtered);
       if (updated || JSON.stringify(migrated) !== JSON.stringify(parsed)) {
         localStorage.setItem('dou_portfolio_works', JSON.stringify(migrated));
       }
@@ -183,7 +341,7 @@ export default function App() {
           const data = await response.json();
           if (data.isCustom) {
             // Server copy is master; force sync React states and browser local storage
-            const migratedWorks = migrateWorksToPoster(data.works);
+            const migratedWorks = migrateWorksToLocalPublic(data.works);
             setProfile(data.profile);
             setWorks(migratedWorks);
             setSkills(data.skills);
@@ -207,7 +365,7 @@ export default function App() {
             if (localProfile || localWorks || localSkills || localExp) {
               const profileObj = localProfile ? JSON.parse(localProfile) : initialProfile;
               const rawWorksObj = localWorks ? JSON.parse(localWorks) : initialWorks;
-              const worksObj = migrateWorksToPoster(rawWorksObj);
+              const worksObj = migrateWorksToLocalPublic(rawWorksObj);
               const skillsObj = localSkills ? JSON.parse(localSkills) : initialSkills;
               const expObj = localExp ? JSON.parse(localExp) : initialExperiences;
 

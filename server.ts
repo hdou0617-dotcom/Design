@@ -11,7 +11,11 @@ import { initialWorks } from "./src/worksData";
 
 async function startServer() {
   const app = express();
-  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+  
+  // Use the environment port in production, and default to 3000 in development
+  const PORT = process.env.NODE_ENV === "production" && process.env.PORT
+    ? parseInt(process.env.PORT, 10)
+    : 3000;
 
   // Support large base64 image transfers (for custom uploaded local files)
   app.use(express.json({ limit: "50mb" }));
