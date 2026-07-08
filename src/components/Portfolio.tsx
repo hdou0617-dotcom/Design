@@ -270,7 +270,7 @@ const getCacheBustedUrl = (url: string): string => {
   if (!url) return url;
   if (url.startsWith('data:')) return url;
   const separator = url.includes('?') ? '&' : '?';
-  return `${url}${separator}v=1.5.0`;
+  return `${url}${separator}v=1.6.0`;
 };
 
 const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className = "w-full h-full object-cover", isThumbnail = false }) => {
@@ -279,11 +279,7 @@ const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className
   const imgRef = React.useRef<HTMLImageElement>(null);
 
   const getImageUrl = (url: string, thumb: boolean) => {
-    const resolvedUrl = resolveLocalPublicUrl(url);
-    if (thumb && resolvedUrl && resolvedUrl.startsWith('/')) {
-      return `/temp_small${resolvedUrl}`;
-    }
-    return resolvedUrl;
+    return resolveLocalPublicUrl(url);
   };
 
   const [currentSrc, setCurrentSrc] = React.useState(() => getImageUrl(work.imageUrl, isThumbnail));
@@ -630,8 +626,8 @@ const PortfolioImage: React.FC<PortfolioImageProps> = ({ work, locale, className
               setHasError(true);
             }
           }}
-          className={`${className} absolute inset-0 transition-opacity duration-500 ${
-            loaded ? "opacity-100" : "opacity-0"
+          className={`${className} absolute inset-0 transition-all duration-500 ${
+            loaded ? "opacity-100 blur-0" : "opacity-95 blur-[4px] scale-[1.01]"
           }`}
         />
       )}
@@ -1251,7 +1247,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ works, locale, onUpdateWor
                       ? 'block'
                       : 'max-w-[95vw] max-h-[90vh] w-auto h-auto object-contain'
                   } ${
-                    isModalImgLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                    isModalImgLoaded ? 'opacity-100 scale-100 blur-0' : 'opacity-100 scale-100 blur-[2px]'
                   }`}
                 />
               ) : (

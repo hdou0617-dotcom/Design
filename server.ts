@@ -12,17 +12,14 @@ import { initialWorks } from "./src/worksData";
 async function startServer() {
   const app = express();
   
-  // Determine if we are running in the AI Studio development workspace.
-  // In development, the Cloud Run service name (K_SERVICE) starts with "ais-dev-".
-  // In the shared/production applet, it starts with "ais-pre-".
-  const isDevWorkspace = process.env.K_SERVICE?.startsWith("ais-dev-") ?? true;
-  const isProduction = !isDevWorkspace;
+  // Determine if we are running in production
+  const isProduction = process.env.NODE_ENV === "production";
 
-  // We strictly listen on port 3000 in the development workspace (required for proxying).
-  // In production (Cloud Run), we listen on the port provided by the environment variable (usually 8080).
-  const PORT = isDevWorkspace
-    ? 3000
-    : (process.env.PORT ? parseInt(process.env.PORT, 10) : 8080);
+  // In production (Cloud Run), listen on the port provided by the environment variable (usually 8080).
+  // In development, strictly listen on port 3000 (required for the workspace proxy).
+  const PORT = isProduction
+    ? (process.env.PORT ? parseInt(process.env.PORT, 10) : 8080)
+    : 3000;
 
   // Support large base64 image transfers (for custom uploaded local files)
   app.use(express.json({ limit: "50mb" }));

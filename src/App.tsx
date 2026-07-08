@@ -193,7 +193,7 @@ const migrateWorksToLocalPublic = (parsed: PortfolioWork[]): PortfolioWork[] => 
 
 export default function App() {
   // Clear cached local storage on new builds to ensure Netlify/Cloudflare visitors see the updated content immediately
-  const CURRENT_VERSION = "v1.5.0";
+  const CURRENT_VERSION = "v1.6.0";
   try {
     const savedVersion = localStorage.getItem('dou_portfolio_app_version');
     if (savedVersion !== CURRENT_VERSION) {
