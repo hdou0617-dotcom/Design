@@ -1,0 +1,16 @@
+﻿[vars]
+NODE_VERSION = "20"
+
+[build]
+command = "npm install && npm run build"
+directory = "dist"
+
+[pages]
+productionBranch = "main"
+productionSubstitution.disabled = false
+productionSubstitution.loc = "__PRODUCTION_VARIABLE__"
+developmentSubstitution.disabled = false
+developmentSubstitution.loc = "__DEVELOPMENT_VARIABLE__"
+
+[placement]
+mode = "smart"

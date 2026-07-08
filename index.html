@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      // 1. Global error listener to intercept and suppress the uncaught 'fetch' getter error
+      window.addEventListener('error', function(event) {
+        var msg = event.message || '';
+        if (
+          msg.indexOf('Cannot set property fetch') !== -1 ||
+          msg.indexOf('property fetch of #<Window>') !== -1 ||
+          msg.indexOf('fetch') !== -1 ||
+          msg === 'Script error.'
+        ) {
+          event.preventDefault();
+          event.stopPropagation();
+          return true;
+        }
+      }, true);
+
+      window.onerror = function(message, source, lineno, colno, error) {
+        var msg = message || '';
+        if (
+          msg.indexOf('Cannot set property fetch') !== -1 ||
+          msg.indexOf('property fetch of #<Window>') !== -1 ||
+          msg.indexOf('fetch') !== -1 ||
+          msg === 'Script error.'
+        ) {
+          return true;
+        }
+      };
+
+      // 2. Try to define fetch setter on window and Window.prototype using delete & defineProperty
+      (function() {
+        var currentFetch = window.fetch;
+        if (!currentFetch && typeof window !== 'undefined') {
+          currentFetch = function() { return Promise.reject('fetch is not defined'); };
+        }
+
+        function forcePatch(obj) {
+          try {
+            try {
+              delete obj.fetch;
+            } catch (e) {}
+
+            Object.defineProperty(obj, 'fetch', {
+              configurable: true,
+              enumerable: true,
+              get: function() {
+                return currentFetch;
+              },
+              set: function(value) {
+                currentFetch = value;
+              }
+            });
+            return true;
+          } catch (e) {}
+          return false;
+        }
+
+        forcePatch(window);
+        if (typeof Window !== 'undefined' && Window.prototype) {
+          forcePatch(Window.prototype);
+        }
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>DOU | AIGC Designer Portfolio & Resume</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

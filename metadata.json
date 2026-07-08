@@ -1,0 +1,6 @@
+{
+  "name": "AIGC Designer Portfolio",
+  "description": "高级苹果官网极简风格的AIGC设计师个人简历与作品集网站，默认暗色模式，支持一键明暗切换，具备轻量滚动渐入动画及无损分类画廊。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
