@@ -102,9 +102,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="hidden sm:inline">{locale === 'zh' ? 'EN' : 'ZH'}</span>
             </button>
 
-
-
-            {/* "GET IN TOUCH" Button (hidden below md) */}
+            {/* Admin Control Settings Button */}
+            <button
+              onClick={onOpenEditor}
+              className="p-2 rounded-full border border-white/10 cursor-pointer hover:bg-white/10 text-white/70 hover:text-white transition-colors"
+              title={locale === 'zh' ? '打开管理编辑器' : 'Open Admin Editor'}
+              id="vanguard-btn-settings"
+            >
+              <Settings2 className="w-3.5 h-3.5" />
+            </button>
             <button
               onClick={() => handleScrollTo('contact')}
               className="hidden md:flex items-center justify-center relative overflow-hidden px-5 py-2.5 rounded-full border border-white bg-white hover:bg-transparent font-medium text-xs tracking-widest uppercase transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)] group"

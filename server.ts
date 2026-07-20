@@ -18,9 +18,8 @@ async function startServer() {
     process.env.K_SERVICE !== undefined ||
     (typeof __filename !== "undefined" && __filename.includes("server.cjs"));
 
-  // In production (Cloud Run), we must listen on the port provided by the environment variable.
-  // In development, we must strictly listen on port 3000 (required for the workspace proxy).
-  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+  // Always listen on port 3000 as required by the container infrastructure and ingress proxy.
+  const PORT = 3000;
 
   // Support large base64 image transfers (for custom uploaded local files)
   app.use(express.json({ limit: "50mb" }));
@@ -438,7 +437,7 @@ async function startServer() {
   // Serve Frontend / Vite Middleware
   const distPath = path.join(process.cwd(), "dist");
 
-  if (!isProduction) {
+  if (process.env.NODE_ENV !== "production") {
     try {
       const { createServer: createViteServer } = await import("vite");
       const vite = await createViteServer({

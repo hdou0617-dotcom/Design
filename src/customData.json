@@ -4,9 +4,9 @@
       "zh": "黄文荟",
       "en": "Ah Wen"
     },
-    "englishName": "H",
+    "englishName": "AH WEN",
     "title": {
-      "zh": " 电商设计师",
+      "zh": "高级电商与3D渲染设计师",
       "en": "Senior AIGC Visual Designer & Prompt Engineer"
     },
     "tags": {
@@ -58,7 +58,7 @@
       "category": "detail",
       "imageUrl": "/details_page/gelishuang.jpg",
       "description": {
-        "zh": "专专为高端美妆打造的隔离霜电商详情。柔和晨曦光影搭配温和植萃，传递纯净、自然与零负担的护肤修颜美学。",
+        "zh": "专为高端美妆打造的隔离霜电商详情。柔和晨曦光影搭配温和植萃，传递纯净、自然与零负担的护肤修颜美学。",
         "en": "An elegant, minimalist detail layout for premium hydrating barrier primer cream, highlighting pure and weightless skin aesthetic."
       },
       "prompt": "",
