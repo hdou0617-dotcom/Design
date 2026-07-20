@@ -18,9 +18,8 @@ async function startServer() {
     process.env.K_SERVICE !== undefined ||
     (typeof __filename !== "undefined" && __filename.includes("server.cjs"));
 
-  // In production (Cloud Run), we must listen on the port provided by the environment variable.
-  // In development, we must strictly listen on port 3000 (required for the workspace proxy).
-  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+  // Always listen on port 3000 as required by the container infrastructure and ingress proxy.
+  const PORT = 3000;
 
   // Support large base64 image transfers (for custom uploaded local files)
   app.use(express.json({ limit: "50mb" }));
@@ -228,7 +227,9 @@ async function startServer() {
       };
 
       // Helper to safely locate the physical asset in either 'public' or 'dist' directory
+      // This is robust against case-sensitivity and Mac NFD vs Linux NFC UTF-8 encoding differences.
       const getAssetPath = (relativePath: string): string | null => {
+        // First try exact match (fast and works for most cases)
         const pathsToTry = [
           path.join(process.cwd(), 'public', relativePath),
           path.join(process.cwd(), 'dist', relativePath)
@@ -238,6 +239,52 @@ async function startServer() {
             return p;
           }
         }
+
+        // Robust matching fallback (handles NFD/NFC and casing differences)
+        try {
+          const normalizedRelative = path.normalize(relativePath).replace(/\\/g, '/');
+          const parts = normalizedRelative.split('/');
+          
+          for (const baseDir of ['public', 'dist']) {
+            let currentPath = path.join(process.cwd(), baseDir);
+            let failed = false;
+            
+            for (const part of parts) {
+              if (!part) continue;
+              if (!fs.existsSync(currentPath)) {
+                failed = true;
+                break;
+              }
+              const stats = fs.statSync(currentPath);
+              if (!stats.isDirectory()) {
+                failed = true;
+                break;
+              }
+              
+              const files = fs.readdirSync(currentPath);
+              const targetNorm = part.normalize('NFC').toLowerCase();
+              
+              const matchedFile = files.find(f => {
+                const fNorm = f.normalize('NFC').toLowerCase();
+                return fNorm === targetNorm;
+              });
+              
+              if (matchedFile) {
+                currentPath = path.join(currentPath, matchedFile);
+              } else {
+                failed = true;
+                break;
+              }
+            }
+            
+            if (!failed && fs.existsSync(currentPath)) {
+              return currentPath;
+            }
+          }
+        } catch (err) {
+          console.error("Error in robust getAssetPath:", err);
+        }
+
         return null;
       };
 
