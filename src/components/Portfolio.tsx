@@ -114,125 +114,17 @@ const resolveLocalPublicUrl = (url: string): string => {
   }
   
   let clean = decoded.trim().replace(/\/+/g, '/');
-  if (clean.startsWith('/')) {
-    clean = clean.substring(1);
-  }
-
-  const FILENAME_TO_DISK: Record<string, string> = {
-    // 3D rendering
-    "xiazhui.jpg": "/3d_rendering/下坠.jpg",
-    "下坠.jpg": "/3d_rendering/下坠.jpg",
-    "nanjiangjiu.jpg": "/3d_rendering/南匠酒.jpg",
-    "南匠酒.jpg": "/3d_rendering/南匠酒.jpg",
-    "chufangxidiji.jpg": "/3d_rendering/厨房洗地机.jpg",
-    "厨房洗地机.jpg": "/3d_rendering/厨房洗地机.jpg",
-    "naiping.jpg": "/3d_rendering/奶瓶.jpg",
-    "奶瓶.jpg": "/3d_rendering/奶瓶.jpg",
-    "saodiji.jpg": "/3d_rendering/扫地机.jpg",
-    "扫地机.jpg": "/3d_rendering/扫地机.jpg",
-    "hufataozhuang.jpg": "/3d_rendering/护发套装.jpg",
-    "护发套装.jpg": "/3d_rendering/护发套装.jpg",
-    "hufutaozhuang1.jpg": "/3d_rendering/护肤套装1.jpg",
-    "护肤套装1.jpg": "/3d_rendering/护肤套装1.jpg",
-    "hufutaozhuang2.jpg": "/3d_rendering/护肤套装2.jpg",
-    "护肤套装2.jpg": "/3d_rendering/护肤套装2.jpg",
-    "huoguobaozhuang.jpg": "/3d_rendering/火锅包装.jpg",
-    "火锅包装.jpg": "/3d_rendering/火锅包装.jpg",
-    "yashua.jpg": "/3d_rendering/牙刷.jpg",
-    "牙刷.jpg": "/3d_rendering/牙刷.jpg",
-    "kongqijinghuaqi.jpg": "/3d_rendering/空气净化器.jpg",
-    "空气净化器.jpg": "/3d_rendering/空气净化器.jpg",
-    "jinghuaye2.jpg": "/3d_rendering/精华液2.jpg",
-    "精华液2.jpg": "/3d_rendering/精华液2.jpg",
-    "jinghuaye.jpg": "/3d_rendering/精华液.jpg",
-    "精华液.jpg": "/3d_rendering/精华液.jpg",
-    "zhijin.jpg": "/3d_rendering/纸巾.jpg",
-    "纸巾.jpg": "/3d_rendering/纸巾.jpg",
-    "zhijin2.jpg": "/3d_rendering/纸巾 (2).jpg",
-    "纸巾 (2).jpg": "/3d_rendering/纸巾 (2).jpg",
-    "jiangjiu.jpg": "/3d_rendering/酱酒.jpg",
-    "酱酒.jpg": "/3d_rendering/酱酒.jpg",
-    "chushiqi.jpg": "/3d_rendering/除湿器.jpg",
-    "除湿器.jpg": "/3d_rendering/除湿器.jpg",
-    "xiangtilu.jpg": "/3d_rendering/香体露.jpg",
-    "香体露.jpg": "/3d_rendering/香体露.jpg",
-
-    // Details Page
-    "gelishuang.jpg": "/Details page/隔离霜.jpg",
-    "隔离霜.jpg": "/Details page/隔离霜.jpg",
-    "kouhong.jpg": "/Details page/口红.jpg",
-    "口红.jpg": "/Details page/口红.jpg",
-    "huanfuye.jpg": "/Details page/焕肤液.jpg",
-    "焕肤液.jpg": "/Details page/焕肤液.jpg",
-    "xifamuyu.jpg": "/Details page/洗发沐浴.jpg",
-    "洗发沐浴.jpg": "/Details page/洗发沐浴.jpg",
-    "xiaodugui.jpg": "/Details page/消毒柜.jpg",
-    "消毒柜.jpg": "/Details page/消毒柜.jpg",
-    "jiaju.jpg": "/Details page/家居.jpg",
-    "家居.jpg": "/Details page/家居.jpg",
-    "tangrantuiche.jpg": "/Details page/烫染推车.jpg",
-    "烫染推车.jpg": "/Details page/烫染推车.jpg",
-    "nuanzhuo.jpg": "/Details page/暖桌.jpg",
-    "暖桌.jpg": "/Details page/暖桌.jpg",
-    "wangzhan2.jpg": "/Details page/网站2.jpg",
-    "网站2.jpg": "/Details page/网站2.jpg",
-
-    // Illustration
-    "chahua1.jpg": "/Illustration/插画1.jpg",
-    "插画1.jpg": "/Illustration/插画1.jpg",
-    "chahua2.jpg": "/Illustration/插画2.jpg",
-    "插画2.jpg": "/Illustration/插画2.jpg",
-    "chahua3.jpg": "/Illustration/插画3.jpg",
-    "插画3.jpg": "/Illustration/插画3.jpg",
-    "chahua4.jpg": "/Illustration/插画4.jpg",
-    "插画4.jpg": "/Illustration/插画4.jpg",
-    "chahua5.jpg": "/Illustration/插画5.jpg",
-    "插画5.jpg": "/Illustration/插画5.jpg",
-    "chahua6.jpg": "/Illustration/插画6.jpg",
-    "插画6.jpg": "/Illustration/插画6.jpg",
-
-    // New Media
-    "banner1.jpg": "/New media/banner1.jpg",
-    "banner2.jpg": "/New media/banner2.jpg",
-    "banner3.jpg": "/New media/banner3.jpg",
-    "banner4.jpg": "/New media/banner4.jpg",
-    "beijing1.jpg": "/New media/背景1.jpg",
-    "背景1.jpg": "/New media/背景1.jpg",
-    "beijing2.jpg": "/New media/背景2.jpg",
-    "背景2.jpg": "/New media/背景2.jpg",
-    "tiepian1.jpg": "/New media/贴片1.jpg",
-    "贴片1.jpg": "/New media/贴片1.jpg",
-    "tiepian2.jpg": "/New media/贴片2.jpg",
-    "贴片2.jpg": "/New media/贴片2.jpg",
-    "tiepian3.jpg": "/New media/贴片3.jpg",
-    "贴片3.jpg": "/New media/贴片3.jpg",
-    "tiepian4.jpg": "/New media/贴片4.jpg",
-    "贴片4.jpg": "/New media/贴片4.jpg",
-    "tiepian5.jpg": "/New media/贴片5.jpg",
-    "贴片5.jpg": "/New media/贴片5.jpg",
-    "微信图片_20260706113809_21_2.jpg": "/微信图片_20260706113809_21_2.jpg"
-  };
-
-  const filename = clean.split('/').pop() || '';
-  const lowerFilename = filename.toLowerCase();
   
-  const matchedKey = Object.keys(FILENAME_TO_DISK).find(
-    k => k.toLowerCase() === lowerFilename
-  );
-
-  if (matchedKey) {
-    return FILENAME_TO_DISK[matchedKey];
-  }
-
+  // Normalize directories to lowercase ASCII formats
   let formatted = clean;
-  if (/^details_page\//i.test(formatted)) {
-    formatted = formatted.replace(/^details_page\//i, 'Details page/');
-  } else if (/^illustration\//i.test(formatted)) {
-    formatted = formatted.replace(/^illustration\//i, 'Illustration/');
-  } else if (/^new_media\//i.test(formatted)) {
-    formatted = formatted.replace(/^new_media\//i, 'New media/');
-  } else if (/^3d_rendering\//i.test(formatted)) {
-    formatted = formatted.replace(/^3d_rendering\//i, '3d_rendering/');
+  if (/^\/?details_page\//i.test(formatted)) {
+    formatted = formatted.replace(/^\/?details_page\//i, '/details_page/');
+  } else if (/^\/?illustration\//i.test(formatted)) {
+    formatted = formatted.replace(/^\/?illustration\//i, '/illustration/');
+  } else if (/^\/?new_media\//i.test(formatted)) {
+    formatted = formatted.replace(/^\/?new_media\//i, '/new_media/');
+  } else if (/^\/?3d_rendering\//i.test(formatted)) {
+    formatted = formatted.replace(/^\/?3d_rendering\//i, '/3d_rendering/');
   }
 
   return formatted.startsWith('/') ? formatted : '/' + formatted;
