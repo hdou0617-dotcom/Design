@@ -18,11 +18,9 @@ async function startServer() {
     process.env.K_SERVICE !== undefined ||
     (typeof __filename !== "undefined" && __filename.includes("server.cjs"));
 
-  // In production (Cloud Run), we must listen on the port provided by the environment variable (usually 8080).
+  // In production (Cloud Run), we must listen on the port provided by the environment variable.
   // In development, we must strictly listen on port 3000 (required for the workspace proxy).
-  const PORT = isProduction
-    ? (process.env.PORT ? parseInt(process.env.PORT, 10) : 8080)
-    : 3000;
+  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
   // Support large base64 image transfers (for custom uploaded local files)
   app.use(express.json({ limit: "50mb" }));
@@ -133,10 +131,24 @@ async function startServer() {
         "new_media/tiepian5.jpg": "New media/贴片5.jpg",
       };
 
+      // Helper to safely locate the physical asset in either 'public' or 'dist' directory
+      const getAssetPath = (relativePath: string): string | null => {
+        const pathsToTry = [
+          path.join(process.cwd(), 'public', relativePath),
+          path.join(process.cwd(), 'dist', relativePath)
+        ];
+        for (const p of pathsToTry) {
+          if (fs.existsSync(p)) {
+            return p;
+          }
+        }
+        return null;
+      };
+
       // Direct exact match
       if (ASCII_MAPPING[lowerPath]) {
-        const physicalFile = path.join(process.cwd(), 'public', ASCII_MAPPING[lowerPath]);
-        if (fs.existsSync(physicalFile)) {
+        const physicalFile = getAssetPath(ASCII_MAPPING[lowerPath]);
+        if (physicalFile) {
           return res.sendFile(physicalFile);
         }
       }
@@ -196,8 +208,8 @@ async function startServer() {
       };
 
       if (FILENAME_MAPPING[lowerFilename]) {
-        const physicalFile = path.join(process.cwd(), 'public', FILENAME_MAPPING[lowerFilename]);
-        if (fs.existsSync(physicalFile)) {
+        const physicalFile = getAssetPath(FILENAME_MAPPING[lowerFilename]);
+        if (physicalFile) {
           return res.sendFile(physicalFile);
         }
       }
