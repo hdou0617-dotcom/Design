@@ -43,7 +43,7 @@ interface PortfolioImageProps {
 }
 
 const LOCAL_IMAGE_FALLBACKS: Record<string, string> = {
-  // 3D Rendering Fallbacks
+  // 3D Rendering Fallbacks (ASCII keys)
   "/3d_rendering/xiazhui.jpg": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000",
   "/3d_rendering/nanjiangjiu.jpg": "https://images.unsplash.com/photo-1569529465841-dfedd8d5043d?q=80&w=1000",
   "/3d_rendering/chufangxidiji.jpg": "https://images.unsplash.com/photo-1581842239015-0a17f22ca451?q=80&w=1000",
@@ -63,12 +63,72 @@ const LOCAL_IMAGE_FALLBACKS: Record<string, string> = {
   "/3d_rendering/chushiqi.jpg": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000",
   "/3d_rendering/xiangtilu.jpg": "https://images.unsplash.com/photo-1602928321679-560bb453f190?q=80&w=1000",
 
+  // 3D Rendering Fallbacks (Chinese keys)
+  "/3d_rendering/下坠.jpg": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000",
+  "/3d_rendering/南匠酒.jpg": "https://images.unsplash.com/photo-1569529465841-dfedd8d5043d?q=80&w=1000",
+  "/3d_rendering/厨房洗地机.jpg": "https://images.unsplash.com/photo-1581842239015-0a17f22ca451?q=80&w=1000",
+  "/3d_rendering/奶瓶.jpg": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=1000",
+  "/3d_rendering/扫地机.jpg": "https://images.unsplash.com/photo-1618090584126-129cd1f3f94c?q=80&w=1000",
+  "/3d_rendering/护发套装.jpg": "https://images.unsplash.com/photo-1526947425960-945c6e72858f?q=80&w=1000",
+  "/3d_rendering/护肤套装1.jpg": "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=1000",
+  "/3d_rendering/护肤套装2.jpg": "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1000",
+  "/3d_rendering/火锅包装.jpg": "https://images.unsplash.com/photo-1554998171-7e599bc95ccd?q=80&w=1000",
+  "/3d_rendering/牙刷.jpg": "https://images.unsplash.com/photo-1559599101-f09722fb4948?q=80&w=1000",
+  "/3d_rendering/空气净化器.jpg": "https://images.unsplash.com/photo-1585338107529-13afc5f02586?q=80&w=1000",
+  "/3d_rendering/精华液2.jpg": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?q=80&w=1000",
+  "/3d_rendering/精华液.jpg": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1000",
+  "/3d_rendering/纸巾.jpg": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000",
+  "/3d_rendering/纸巾 (2).jpg": "https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=1000",
+  "/3d_rendering/酱酒.jpg": "https://images.unsplash.com/photo-1543007630-9710e4a00a20?q=80&w=1000",
+  "/3d_rendering/除湿器.jpg": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000",
+  "/3d_rendering/香体露.jpg": "https://images.unsplash.com/photo-1602928321679-560bb453f190?q=80&w=1000",
+
+  // Details Page (ASCII keys)
+  "/details_page/gelishuang.jpg": "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1000",
+  "/details_page/kouhong.jpg": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=1000",
+  "/details_page/huanfuye.jpg": "https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=1000",
+  "/details_page/xifamuyu.jpg": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?q=80&w=1000",
+  "/details_page/xiaodugui.jpg": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000",
+  "/details_page/jiaju.jpg": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000",
+  "/details_page/tangrantuiche.jpg": "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1000",
+  "/details_page/nuanzhuo.jpg": "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1000",
+  "/details_page/wangzhan2.jpg": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000",
+
+  // Details Page (Chinese & Spaced keys)
+  "/Details page/隔离霜.jpg": "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1000",
+  "/Details page/口红.jpg": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=1000",
+  "/Details page/焕肤液.jpg": "https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=1000",
+  "/Details page/洗发沐浴.jpg": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?q=80&w=1000",
+  "/Details page/消毒柜.jpg": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000",
+  "/Details page/家居.jpg": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000",
+  "/Details page/烫染推车.jpg": "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1000",
+  "/Details page/暖桌.jpg": "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1000",
+  "/Details page/网站2.jpg": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000",
+
+  // Illustration (ASCII keys)
+  "/illustration/chahua1.jpg": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1000",
+  "/illustration/chahua2.jpg": "https://images.unsplash.com/photo-1579783928586-78d1af662285?q=80&w=1000",
+  "/illustration/chahua3.jpg": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=1000",
+  "/illustration/chahua4.jpg": "https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=1000",
+  "/illustration/chahua5.jpg": "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1000",
+  "/illustration/chahua6.jpg": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000",
+
+  // Illustration (Chinese keys)
+  "/illustration/插画1.jpg": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1000",
+  "/illustration/插画2.jpg": "https://images.unsplash.com/photo-1579783928586-78d1af662285?q=80&w=1000",
+  "/illustration/插画3.jpg": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=1000",
+  "/illustration/插画4.jpg": "https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=1000",
+  "/illustration/插画5.jpg": "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1000",
+  "/illustration/插画6.jpg": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000",
+
   // Legacy/Alternate Fallbacks
   "/poster/下坠20136 拷贝.png": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000",
   "/poster/牙刷.jpg": "https://images.unsplash.com/photo-1559599101-f09722fb4948?q=80&w=1000",
   "/poster/精华液2.jpg": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?q=80&w=1000",
   "/poster/精华液.png": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1000",
   "/poster/香体露.png": "https://images.unsplash.com/photo-1602928321679-560bb453f190?q=80&w=1000",
+
+  // New Media (ASCII keys)
   "/new_media/banner1.jpg": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1000",
   "/new_media/banner2.jpg": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1000",
   "/new_media/banner3.jpg": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000",
@@ -80,15 +140,19 @@ const LOCAL_IMAGE_FALLBACKS: Record<string, string> = {
   "/new_media/tiepian3.jpg": "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=1000",
   "/new_media/tiepian4.jpg": "https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?q=80&w=1000",
   "/new_media/tiepian5.jpg": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1000",
-  "/details_page/gelishuang.jpg": "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1000",
-  "/details_page/kouhong.jpg": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=1000",
-  "/details_page/huanfuye.jpg": "https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=1000",
-  "/details_page/xifamuyu.jpg": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?q=80&w=1000",
-  "/details_page/xiaodugui.jpg": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000",
-  "/details_page/jiaju.jpg": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000",
-  "/details_page/tangrantuiche.jpg": "https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1000",
-  "/details_page/nuanzhuo.jpg": "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1000",
-  "/details_page/wangzhan2.jpg": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000"
+
+  // New Media (Chinese & Spaced keys)
+  "/New media/banner1.jpg": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1000",
+  "/New media/banner2.jpg": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1000",
+  "/New media/banner3.jpg": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000",
+  "/New media/banner4.jpg": "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1000",
+  "/New media/背景1.jpg": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000",
+  "/New media/背景2.jpg": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000",
+  "/New media/贴片1.jpg": "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=1000",
+  "/New media/贴片2.jpg": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1000",
+  "/New media/贴片3.jpg": "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=1000",
+  "/New media/贴片4.jpg": "https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?q=80&w=1000",
+  "/New media/贴片5.jpg": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1000",
 };
 
 const safeEncodeUrl = (url: string): string => {
