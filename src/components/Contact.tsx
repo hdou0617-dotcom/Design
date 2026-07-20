@@ -14,6 +14,17 @@ interface ContactProps {
   darkMode: boolean;
 }
 
+const safeEncodeUrl = (url: string): string => {
+  if (!url) return url;
+  if (url.startsWith('data:')) return url;
+  try {
+    const decoded = decodeURIComponent(url);
+    return encodeURI(decoded);
+  } catch (e) {
+    return encodeURI(url);
+  }
+};
+
 export const Contact: React.FC<ContactProps> = ({ profile, locale, darkMode }) => {
   const [copied, setCopied] = React.useState(false);
   const [showWechatQr, setShowWechatQr] = React.useState(false);
@@ -129,7 +140,7 @@ export const Contact: React.FC<ContactProps> = ({ profile, locale, darkMode }) =
                 showWechatQr ? 'max-h-[240px] opacity-100 p-4 mt-4' : 'max-h-0 opacity-0 pointer-events-none'
               }`}>
                 <img
-                  src={profile.wechatQrCode && profile.wechatQrCode.startsWith('data:') ? profile.wechatQrCode : encodeURI(profile.wechatQrCode || '')}
+                  src={profile.wechatQrCode && profile.wechatQrCode.startsWith('data:') ? profile.wechatQrCode : safeEncodeUrl(profile.wechatQrCode || '')}
                   alt="WeChat QR Code"
                   referrerPolicy="no-referrer"
                   className="w-32 h-32 object-cover rounded-lg border border-zinc-900"

@@ -24,6 +24,17 @@ interface AdminEditorProps {
   onReset: () => void;
 }
 
+const safeEncodeUrl = (url: string): string => {
+  if (!url) return url;
+  if (url.startsWith('data:')) return url;
+  try {
+    const decoded = decodeURIComponent(url);
+    return encodeURI(decoded);
+  } catch (e) {
+    return encodeURI(url);
+  }
+};
+
 export const AdminEditor: React.FC<AdminEditorProps> = ({
   isOpen,
   onClose,
@@ -664,7 +675,7 @@ export const AdminEditor: React.FC<AdminEditorProps> = ({
                           {/* Image preview & source URL */}
                           <div className="flex gap-4 items-center">
                             <img
-                              src={selectedWork.imageUrl && selectedWork.imageUrl.startsWith('data:') ? selectedWork.imageUrl : encodeURI(selectedWork.imageUrl)}
+                              src={selectedWork.imageUrl && selectedWork.imageUrl.startsWith('data:') ? selectedWork.imageUrl : safeEncodeUrl(selectedWork.imageUrl)}
                               alt="preview"
                               referrerPolicy="no-referrer"
                               className="w-16 h-16 object-cover rounded-lg bg-zinc-950 border border-zinc-800 cursor-zoom-in hover:opacity-80 transition-all"

@@ -12,6 +12,17 @@ interface AboutProps {
   locale: Locale;
 }
 
+const safeEncodeUrl = (url: string): string => {
+  if (!url) return url;
+  if (url.startsWith('data:')) return url;
+  try {
+    const decoded = decodeURIComponent(url);
+    return encodeURI(decoded);
+  } catch (e) {
+    return encodeURI(url);
+  }
+};
+
 export const About: React.FC<AboutProps> = ({ profile, locale }) => {
   const [avatarError, setAvatarError] = React.useState(false);
 
@@ -112,7 +123,7 @@ export const About: React.FC<AboutProps> = ({ profile, locale }) => {
                 <>
                   {/* Profile Image with subtle scale */}
                   <img
-                    src={profile.avatarUrl && profile.avatarUrl.startsWith('data:') ? profile.avatarUrl : encodeURI(profile.avatarUrl || '')}
+                    src={profile.avatarUrl && profile.avatarUrl.startsWith('data:') ? profile.avatarUrl : safeEncodeUrl(profile.avatarUrl || '')}
                     alt={profile.name[locale]}
                     onError={() => setAvatarError(true)}
                     referrerPolicy="no-referrer"
