@@ -13,6 +13,8 @@ interface AboutProps {
 }
 
 export const About: React.FC<AboutProps> = ({ profile, locale }) => {
+  const [avatarError, setAvatarError] = React.useState(false);
+
   const stats = [
     {
       value: `${profile.experienceYears}+`,
@@ -93,21 +95,38 @@ export const About: React.FC<AboutProps> = ({ profile, locale }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start" id="about-grid">
           {/* Left Column: Portrait & Biography */}
           <div className="lg:col-span-5 flex flex-col space-y-8">
-            <div className="relative group overflow-hidden rounded-3xl bg-zinc-900 aspect-square border border-zinc-800">
-              {/* Profile Image with subtle scale */}
-              <img
-                src={profile.avatarUrl && profile.avatarUrl.startsWith('data:') ? profile.avatarUrl : encodeURI(profile.avatarUrl || '')}
-                alt={profile.name[locale]}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover grayscale brightness-90 group-hover:scale-103 group-hover:grayscale-0 transition-all duration-700 ease-out"
-                id="about-avatar"
-              />
-              {/* Overlay Glass Panel */}
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                <p className="text-[10px] text-zinc-400 font-mono tracking-widest uppercase">
-                  {profile.englishName} // CREATIVE ENGINE // 2026
-                </p>
-              </div>
+            <div className="relative group overflow-hidden rounded-3xl bg-zinc-950 aspect-square border border-zinc-800">
+              {avatarError ? (
+                <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-950 relative p-8">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)]" />
+                  <div className="w-20 h-20 rounded-full border border-zinc-800 flex items-center justify-center relative mb-4">
+                    <div className="absolute inset-0 rounded-full bg-white/[0.01] animate-pulse" />
+                    <span className="text-4xl font-serif text-white font-light tracking-wider">
+                      {profile.englishName || 'H'}
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-zinc-400 font-mono tracking-[0.2em] uppercase">CREATIVE VISUAL CORE</span>
+                  <span className="text-[8px] text-zinc-600 font-mono mt-1">AIGC / PORTFOLIO / 2026</span>
+                </div>
+              ) : (
+                <>
+                  {/* Profile Image with subtle scale */}
+                  <img
+                    src={profile.avatarUrl && profile.avatarUrl.startsWith('data:') ? profile.avatarUrl : encodeURI(profile.avatarUrl || '')}
+                    alt={profile.name[locale]}
+                    onError={() => setAvatarError(true)}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover grayscale brightness-90 group-hover:scale-103 group-hover:grayscale-0 transition-all duration-700 ease-out"
+                    id="about-avatar"
+                  />
+                  {/* Overlay Glass Panel */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                    <p className="text-[10px] text-zinc-400 font-mono tracking-widest uppercase">
+                      {profile.englishName} // CREATIVE ENGINE // 2026
+                    </p>
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Quick Stats Grid */}
