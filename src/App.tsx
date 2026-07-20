@@ -462,7 +462,6 @@ export default function App() {
         setLocale={setLocale}
         darkMode={darkMode}
         setDarkMode={setDarkMode}
-        onOpenEditor={() => setEditorOpen(true)}
         activeSection={activeSection}
       />
 

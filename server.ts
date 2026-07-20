@@ -18,8 +18,9 @@ async function startServer() {
     process.env.K_SERVICE !== undefined ||
     (typeof __filename !== "undefined" && __filename.includes("server.cjs"));
 
-  // Always listen on port 3000 as required by the container infrastructure and ingress proxy.
-  const PORT = 3000;
+  // In production (Cloud Run), we must listen on the port provided by the environment variable.
+  // In development, we must strictly listen on port 3000 (required for the workspace proxy).
+  const PORT = isProduction ? (process.env.PORT ? parseInt(process.env.PORT, 10) : 8080) : 3000;
 
   // Support large base64 image transfers (for custom uploaded local files)
   app.use(express.json({ limit: "50mb" }));
