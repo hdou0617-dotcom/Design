@@ -18,11 +18,10 @@ async function startServer() {
     process.env.K_SERVICE !== undefined ||
     (typeof __filename !== "undefined" && __filename.includes("server.cjs"));
 
-  // In production (Cloud Run), listen on the port provided by the environment variable (usually 8080).
-  // In development, strictly listen on port 3000 (required for the workspace proxy).
-  const PORT = isProduction
-    ? (process.env.PORT ? parseInt(process.env.PORT, 10) : 8080)
-    : 3000;
+  // In both development and production (Cloud Run), the application runs behind
+  // an nginx reverse proxy layer that routes all external traffic exclusively to port 3000.
+  // Therefore, we must strictly listen on port 3000.
+  const PORT = 3000;
 
   // Support large base64 image transfers (for custom uploaded local files)
   app.use(express.json({ limit: "50mb" }));
