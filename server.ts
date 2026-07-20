@@ -13,11 +13,16 @@ async function startServer() {
   const app = express();
   
   // Determine if we are running in production
-  const isProduction = process.env.NODE_ENV === "production";
+  const isProduction =
+    process.env.NODE_ENV === "production" ||
+    process.env.K_SERVICE !== undefined ||
+    (typeof __filename !== "undefined" && __filename.includes("server.cjs"));
 
-  // The PORT value (3000) is hardcoded by the infrastructure and cannot be changed or overridden.
-  // Port & Host: Bind to port 3000 and host 0.0.0.0 (required for container ingress routing).
-  const PORT = 3000;
+  // In production (Cloud Run), listen on the port provided by the environment variable (usually 8080).
+  // In development, strictly listen on port 3000 (required for the workspace proxy).
+  const PORT = isProduction
+    ? (process.env.PORT ? parseInt(process.env.PORT, 10) : 8080)
+    : 3000;
 
   // Support large base64 image transfers (for custom uploaded local files)
   app.use(express.json({ limit: "50mb" }));
